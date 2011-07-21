@@ -189,16 +189,69 @@ class Problem extends App_Model {
         return $this->_paginate($this->_prepareContent($select), $page, $paginate);
     }
     
+    public function findByAssignmentClassStudent($assignmentId,$classId,$userId,$page = 1, $paginate = NULL){
+
+        $select = $this->_getSelect(false);
+        $select->joinLeft(
+            array(
+                's'	=>    'submissions'
+            ),
+            's.problem_id = p.id AND s.user_id = '.$userId,
+            'COUNT(s.id) AS has_answer'
+        );
+        $select->joinLeft(
+            array(
+                'sg'	=> 'submission_grade'
+            ),
+            'sg.submission_id = s.id',
+            'sg.grade'
+        );
+        $select->joinLeft(
+            array(
+                'au'	=> 'admin_users'
+            ),
+            'au.id = sg.admin_user_id',
+            'CONCAT(firstname," ",lastname) AS grade_by'
+        );
+        $select->group('p.id');
+        $select->where('p.assignment_id = ?',$assignmentId);
+        $select->where('c.class_id = ?',$classId);
+        return $this->_paginate($this->_prepareContent($select), $page, $paginate);
+    }
+    
     public function findByAnswered($userId,$page = 1,$paginate = NULL){
         
         $select = $this->_getSelect(false);
         $select->joinLeft(
             array(
-                's' =>'submissions'
-            ) , 's.problem_id = p.id'
+                's'	=>    'submissions'
+            ),
+            's.problem_id = p.id',
+            'COUNT(s.id) AS has_answer'
         );
+        $select->joinLeft(
+            array(
+                'sg'	=> 'submission_grade'
+            ),
+            'sg.submission_id = s.id',
+            'sg.grade'
+        );
+        $select->joinLeft(
+            array(
+                'au'	=> 'admin_users'
+            ),
+            'au.id = sg.admin_user_id',
+            'CONCAT(firstname," ",lastname) AS grade_by'
+        );
+        $select->join(
+            array(
+                'a'	=> 'assignments'
+            ),
+            'a.id = p.assignment_id',
+            'a.assignment_title AS assignment'
+        );
+        $select->group('p.id');
         $select->where('s.user_id = ?',$userId);
-        
         return $this->_paginate($this->_prepareContent($select), $page, $paginate);
     }
     

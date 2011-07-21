@@ -118,7 +118,7 @@ class AnswerController extends App_Frontend_Controller {
     public function downloadAction(){
         $assignmentId = $this->_getParam('assignmentid');
         $returnUrl = $this->_helper->url('index','problem','frontend',array('assignmentid'=>$assignmentId));
-        $id = $this->_requireParam('id',App_Controller::STRING_T,$returnUrl);
+        $id = $this->_requireParam('id',App_Controller::NUMERIC_T,$returnUrl);
         
         $submissionModel = new Submission();
         $file = $submissionModel->archive($id);

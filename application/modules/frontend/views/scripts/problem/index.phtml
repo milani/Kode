@@ -57,10 +57,25 @@ $config['additionalToolbarActions'] = array(
 $config['columnNames'] = array(
     'Number',
     'Description',
+    'Answered',
+    'Grade',
+    'Grade By'
 );
 $config['columnIndexes'] = array(
     'problem_number',
     'problem_desc',
+    'has_answer',
+    'grade',
+    'grade_by'
+);
+
+$config['nullPlaceholders'] = array(
+    'has_answer' => '<img src="'.$this->baseUrl().'/images/led-ico/cross.png" />',
+    'grade'		 => 'No grade'
+);
+
+$config['columnDataTypes'] = array(
+    'has_answer' => 'boolean'
 );
 
 // configure the permissions

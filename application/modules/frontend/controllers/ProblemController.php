@@ -30,12 +30,13 @@ class ProblemController extends App_Frontend_Controller {
     public function indexAction(){
        $this->title = 'Problems';
        
+       $userId = Zend_Auth::getInstance()->getIdentity()->id;
        $classId = Zend_Auth::getInstance()->getIdentity()->class_id;
        $assignmentId = $this->_requireParam('assignmentid',App_Controller::NUMERIC_T,$this->_helper->url('index','assignment'));
        
        $problemModel = new Problem();
        $this->view->assignmentId = $assignmentId;
-       $this->view->paginator = $problemModel->findByAssignmentClass($assignmentId,$classId,$this->_getPage());
+       $this->view->paginator = $problemModel->findByAssignmentClassStudent($assignmentId,$classId,$userId,$this->_getPage());
     }
     
     public function viewAction(){
@@ -69,6 +70,7 @@ class ProblemController extends App_Frontend_Controller {
         
         $assignmentId = $this->_requireParam('assignmentid',App_Controller::NUMERIC_T);
         $returnUrl = $this->_helper->url('index','problem','frontend',array('assignmentid'=>$assignmentId));
+        
         $id = $this->_requireParam('id', App_Controller::NUMERIC_T,$returnUrl);
         
         $classId = Zend_Auth::getInstance()->getIdentity()->class_id;
@@ -105,7 +107,6 @@ class ProblemController extends App_Frontend_Controller {
         $userId = Zend_Auth::getInstance()->getIdentity()->id;
         
         $problemModel = new Problem();
-        
         $this->view->paginator = $problemModel->findByAnswered($userId,$this->_getPage());
     }
 }

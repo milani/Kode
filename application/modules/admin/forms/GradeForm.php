@@ -43,12 +43,9 @@ class GradeForm extends App_Admin_Form {
         $desc->setOptions(
             array(
                 'label'	    => 'Description',
-                'required'	=> true,
+                'required'	=> false,
                 'filters'	=> array(
                     'StringTrim',
-                ),
-                'validators'	=> array(
-                    'NotEmpty'
                 ),
                 'attribs'	=> array(
                     'height' => '100',

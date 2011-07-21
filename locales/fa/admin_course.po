@@ -214,7 +214,7 @@ msgid "Do you want to delete answer?"
 msgstr "آیا می خواهید پاسخ را حذف نمایید؟"
 
 msgid "Answered Problems"
-msgstr "تمرین های پاسخ داده شده"
+msgstr "مسائل پاسخ داده شده"
 
 msgid "Problem was successfully added."
 msgstr "مسئله با موفقیت ایجاد شد."
@@ -224,4 +224,16 @@ msgstr "مسئله با موفقیت ویرایش شد."
 
 msgid "The problem was successfully deleted."
 msgstr "مسئله با موفقیت حذف شد."
+
+msgid "No answered problem found."
+msgstr "مسئله پاسخ داده ای یافت نشد."
+
+msgid "Grade By"
+msgstr "مصحح"
+
+msgid "Answered"
+msgstr "پاسخ داده شده"
+
+msgid "Assignment Title"
+msgstr "سری تمرین"
 

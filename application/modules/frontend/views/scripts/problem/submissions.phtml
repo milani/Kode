@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays all the user groups
+ * Displays answered problems
  *
  * @package admin_views
  * @subpackage admin_views_groups
@@ -16,28 +16,71 @@ $config['emptyMessage'] = 'No answered problem found.';
 // additional actions
 $config['additionalActions'] = array(
     'submissions' => array(
-        'action'		=> 'answer',
-        'controller'	=> 'problem',
-        'title'			=> 'Edit Answer',
+        'action'		=> 'index',
+        'controller'	=> 'answer',
+        'title'			=> 'Submit Answer',
         'link_class'	=> 'ico',
-        'img_alt'		=> 'Edit Answer',
-        'img_url'		=> '/images/led-ico/page_white_text.png',
-        'parameter'		=> true
+        'img_alt'		=> 'Submit Answer',
+        'img_url'		=> '/images/led-ico/page_white_edit.png',
+        'parameter'		=> true,
+        'parameter_index'	=> 'problem_id',
+        'other_parameters'	=> array(
+            'assignmentid'	=> 'assignment_id'
+        )
     ),
+    'download'	=> array(
+        'action'		=> 'download',
+        'controller'	=> 'problem',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/drive_disk.png',
+        'parameter'		=> true,
+    	'parameter_index'	=> 'problem_id',
+    ),
+    'view'		=> array(
+        'action'		=> 'view',
+        'controller'	=> 'problem',
+        'title'			=> 'View',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'View',
+        'img_url'		=> '/images/led-ico/page_white_text.png',
+        'parameter'		=> true,
+    	'parameter_index'	=> 'problem_id',
+    	'other_parameters'	=> array(
+            'assignmentid'	=> 'assignment_id'
+        )
+    )
 );
 
 // column names & indexes
 $config['columnNames'] = array(
     'Number',
+    'Assignment Title',
     'Description',
+    'Answered',
+    'Grade',
+    'Grade By'
 );
 $config['columnIndexes'] = array(
     'problem_number',
+    'assignment',
     'problem_desc',
+    'has_answer',
+    'grade',
+    'grade_by'
 );
 
+$config['nullPlaceholders'] = array(
+    'has_answer' => '<img src="'.$this->baseUrl().'/images/led-ico/cross.png" />',
+    'grade'		 => 'No grade'
+);
+
+$config['columnDataTypes'] = array(
+    'has_answer' => 'boolean'
+);
 // configure the permissions
-$config['linkOrder'] = array('submissions');
+$config['linkOrder'] = array('download','view','submissions');
 
 // render the default listing
 echo $this->partial(
