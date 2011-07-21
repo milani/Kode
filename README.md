@@ -32,8 +32,13 @@ Yes!
 
 ## How to install?
 
-Please read install.md in kode/docs/
-There is no build script now.
+This [page](https://github.com/milani/Kode/wiki/Installation-Guide) explains how to install Kode on your server.
+
+There is no build script now. But I plan to add a build script to smooth installation process.
+
+## Anything else?
+
+If you used this project, please add a link to your domain in [this page](https://github.com/milani/Kode/wiki/Who-uses-Kode).
 
 #### Notice
 
