@@ -1,0 +1,69 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Manage Problems';
+$config['addMessage'] = 'Add new problem'; 
+$config['emptyMessage'] = 'No problem found.';
+$config['linkRouter'] = array(
+    'defaultParams'	=> array('classid'=>$this->classId,'assignmentid'=>$this->assignmentId)
+);
+// additional actions
+$config['additionalActions'] = array(
+    'submissions' => array(
+        'action'		=> 'index',
+        'controller'	=> 'submission',
+        'title'			=> 'Submissions',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Submissions',
+        'img_url'		=> '/images/led-ico/page_white_text.png',
+        'parameter'		=> true,
+        'parameter_name'=> 'problemid'
+    ),
+);
+
+$config['additionalToolbarActions'] = array(
+    'back'	=> array(
+        'action'		=> 'index',
+        'controller'	=> 'assignment',
+        'title'			=> 'Back to assignments',
+    )
+);
+// column names & indexes
+$config['columnNames'] = array(
+    'Number',
+    'Description',
+    'Submissions',
+    'Marked Submissions'
+);
+$config['columnIndexes'] = array(
+    'problem_number',
+    'problem_desc',
+    'submission_count',
+    'submission_grade_count'
+);
+
+$config['nullPlaceholders'] = array(
+    'submission_count'	=> '0',
+    'submission_grade_count'	=> '0'
+);
+
+// configure the permissions
+$config['linkOrder'] = array('submissions', 'edit', 'delete');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

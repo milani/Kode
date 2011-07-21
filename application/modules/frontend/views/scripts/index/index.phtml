@@ -1,0 +1,37 @@
+<?php
+/**
+ * Displays the user's dashboard
+ *
+ *
+ * @category frontend
+ * @package frontend_views
+ * @subpackage frontend_views_index
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<div class="box box-75 altbox">
+<div class="boxin">
+<div class="header">
+<h1><?php echo $this->t('Notifications');?></h1>
+</div>
+<div class="content">
+<ul class="notifications">
+
+</ul>
+</div>
+ 
+<div class="clearfix"></div>
+</div>
+</div>
+
+<div class="box box-25 altbox">
+<div class="boxin">
+<div class="header">
+<h1><?php echo $this->t('Navigation');?></h1>
+</div>
+<div class="content">
+<?php echo $this->renderMenu();?>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>

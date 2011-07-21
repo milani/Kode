@@ -1,0 +1,81 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Manage Classes';
+$config['addMessage'] = 'Add new class'; 
+$config['emptyMessage'] = 'No class defined in the system.';
+
+// additional actions
+$config['additionalActions'] = array(
+    'assistants'  =>  array(
+        'action'		=> 'assistants',
+        'title'			=> 'Assistants',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Assistants',
+        'img_url'		=> '/images/led-ico/user_permission.png',
+        'parameter'		=> true
+    ),
+    'students'    =>  array(
+        'action'        => 'students',
+        'controller'	=> 'users',
+        'title'         => 'Students',
+        'link_class'    => 'ico',
+        'img_alt'       => 'Students',
+        'img_url'       => '/images/led-ico/group.png',
+        'parameter'     => true,
+        'parameter_name'=> 'classid'
+    ),
+    'assignments'    =>  array(
+        'action'        => 'index',
+        'controller'	=> 'assignment',
+        'title'         => 'Assignments',
+        'link_class'    => 'ico',
+        'img_alt'       => 'Assignments',
+        'img_url'       => '/images/led-ico/envelope_2.png',
+        'parameter'     => true,
+        'parameter_name'=> 'classid' 
+    ),
+);
+
+$config['additionalToolbarActions'] = array(
+    'addAssignment' => array(
+        'action'	    => 'batchadd',
+        'controller'	=> 'assignment',
+        'title'	        => 'Add assignment for all classes'
+    ),
+);
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Class Name',
+    'Course Name',
+    'Semester',
+    'Year'
+);
+$config['columnIndexes'] = array(
+    'class_name',
+    'course_name',
+    'class_term',
+    'class_year'
+);
+
+// configure the permissions
+$config['linkOrder'] = array('assistants','students','assignments','edit', 'delete');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

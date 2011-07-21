@@ -1,0 +1,64 @@
+<?php
+/**
+ * Displays an user
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = 'View problem';
+// column names & indexes
+$config['columnNames'] = array(
+    'Number',
+    'Problem Description'
+);
+$config['columnIndexes'] = array(
+    'problem_number',
+    'problem_desc'
+);
+$config['backlink'] = $this->backlink;
+echo $this->partial('partials/default-view.phtml', 
+    array(
+    	'config'  => $config,
+    	'item'    => $this->item,
+        'boxsize' => '75'
+    )
+);
+
+$config = array();
+$config['pageTitle'] = 'Attachments';
+$config['emptyMessage'] = 'No Attachment.';
+
+// additional actions
+$config['additionalActions'] = array(
+    'downloadAttach' => array(
+        'action'		=> 'downloadattachment',
+        'controller'	=> 'problem',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/download.png',
+        'parameter'		=> true,
+        'parameter_index'=> 'file_unique'
+    )
+);
+// column names & indexes
+$config['columnNames'] = array(
+    'Filename'
+);
+$config['columnIndexes'] = array(
+    'file_name'
+);
+
+// configure the permissions
+$config['linkOrder'] = array('downloadAttach');
+
+echo $this->partial('partials/attachment-listing.phtml',
+    array(
+        'config'	    => $config,
+        'attachments'	=> $this->attachments,
+        'id'		    => $this->problemId		
+    )
+);

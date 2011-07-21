@@ -1,0 +1,43 @@
+<?php
+/**
+ * View for the default item details UI
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage partials
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$helper = $this->listingUtilities($this->config);
+?>
+<div class="box box-<?php echo $this->boxsize;?> altbox">
+<div class="boxin">
+<div class="header">
+<h1><?php
+$helper->pageTitle();
+?></h1>
+</div>
+<div class="finalaction">
+<table>
+                <?php
+                foreach( $helper->getColumnNamesAndValues($this->item) as $columnName => $columnValue ):
+                    ?>
+                    <tr>
+		<th><?php
+                    $helper->displayItem($columnName);
+                    ?>:</th>
+		<td><strong><?php
+                    $helper->displayItem($columnValue);
+                    ?></strong></td>
+	</tr>
+                <?php
+                endforeach
+                ;
+                ?>
+            </table>
+<p class="back"><a class="alt"
+	href="<?php
+echo $this->config['backlink'];
+?>">← Go back</a></p>
+</div>
+</div>
+</div>

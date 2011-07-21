@@ -1,0 +1,35 @@
+<?php
+/**
+ * Displays an user
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Student Info');
+// column names & indexes
+$config['columnNames'] = array(
+    'Username', 
+    'Email', 
+    'First name', 
+    'Last name',
+    'Class Name',
+   	'Active',
+	'Last Login'
+);
+$config['columnIndexes'] = array(
+    'username', 
+    'email', 
+    'firstname', 
+    'lastname',
+    'class_name',
+    'active',
+	'last_login'
+);
+$config['backlink'] = $this->backlink;
+echo $this->partial('partials/default-view.phtml', 
+array(
+    'config' => $config, 'item' => $this->item
+));

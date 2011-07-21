@@ -1,0 +1,75 @@
+<?php
+/**
+ * Add a new user in the application
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config['pageTitle'] = 'Results';
+$config['showAddButton'] = false;
+$config['emptyMessage'] = 'No result.';
+
+$config['columnNames'] = array(
+    'Student Number', 'First name', 'Last name', 'Class Name','Email', 'Active'
+);
+$config['columnIndexes'] = array(
+    'username', 'firstname', 'lastname', 'class_name','email', 'active'
+);
+$config['viewLinkColumn'] = 'username';
+
+$config['columnDataTypes'] = array(
+    'active' => 'boolean'
+);
+$config['nullPlaceholders'] = array(
+    'active' => '<img src="'.$this->baseUrl().'/images/led-ico/cross.png" />'
+);
+
+$config['additionalActions'] = array(
+    'active'  		=>	array(
+    	'action'		=> 'toggleactivestudent',
+    	'title'			=> 'Toggle Active',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/lightbulb.png',
+        'img_alt'		=> 'Toggle Active'
+    ),
+    'editstudent'          =>  array(
+        'action'		=> 'editstudent',
+    	'title'			=> 'Edit',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/pencil.png',
+        'img_alt'		=> 'Edit'
+    ),
+    'deletestudent'		=> array(
+        'action'		=> 'deletestudent',
+    	'title'			=> 'Delete',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/cross.png',
+        'img_alt'		=> 'Delete'
+    )
+);
+
+$config['linkOrder'] = array('active','editstudent','deletestudent');
+
+echo $this->partial('partials/default-listing.phtml',
+	array(
+	    'config'	=> $config,
+	    'paginator'	=> $this->paginator,
+	    'boxsize'	=> '75'
+	)
+);
+
+$config = array();
+$config['pageTitle'] = 'Search';
+echo $this->partial('partials/default-add-edit.phtml', 
+    array(
+        'form' => $this->form,
+    	'config' => $config,
+        'boxsize' => '25'
+    )
+);

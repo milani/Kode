@@ -1,0 +1,188 @@
+<?php
+/**
+ * View that defines the default listing UI 
+ *
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage partials
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$helper = $this->listingUtilities($this->config);
+?>
+<div class="box box-<?php echo (isset($this->boxsize))?$this->boxsize:'100'?>"><!-- box full-width -->
+<div class="boxin">
+<div class="header">
+<h1><?php
+$helper->pageTitle();
+?></h1>
+            <?php
+            if ($helper->canAdd() && $helper->canShowAddButton()) :
+                ?>
+                <a class="button altbutton"
+	href="<?php
+                $helper->addUrl();
+                ?>"><?php
+                $helper->addMessage();
+                ?> &raquo; </a> 
+            
+            <?php endif;
+            ?>
+            <?php
+            echo $helper->renderToolbarActions();
+            ?>
+        </div>
+<div class="content"><!-- content box 1 for tab switching -->
+<form class="plain" action="" method="post"
+	enctype="multipart/form-data">
+<fieldset>
+<table cellspacing="0">
+	<thead>
+		<!-- universal table heading -->
+		<tr>
+			<!--<td class="tc tcheckbox">
+                                    <input type="checkbox" id="checkboxall" name="checkboxall" value="true" />
+                                </td>--> 
+                                
+                                <?php
+                                /********** display the column names **********/
+                                ?>
+                                <?php
+                                foreach ($helper->getColumnNames() as $columnName) :
+                                    ?>
+                                    <th><?php
+                                    echo $columnName;
+                                    ?></th> 
+                                <?php
+                                endforeach
+                                ;
+                                ?>
+                                <?php
+                                /********** finished displaying the column names **********/
+                                ?>
+                                <td class="tc"><?php
+                                echo $this->t('Actions');
+                                ?></td>
+		</tr>
+	</thead>
+	<!--<tfoot>
+                            <tr> 
+                                <td class="actions-selected" colspan="<?php
+                                $helper->columnCount();
+                                ?>">
+                                    
+                                    <label> 
+                                        with selected do:
+                                        <select name="data-1-groupaction"> 
+                                            <option value="delete">delete</option> 
+                                        </select> 
+                                    </label> 
+                                    <input class="button altbutton" type="submit" value="OK" />
+                                    <label> 
+                                        with selected do:
+                                        <input class="button altbutton" type="submit" value="Delete" /> 
+                                    </label>
+                                </td> 
+                            </tr> 
+                        </tfoot> -->
+	<tbody>
+                        
+                        <?php
+                        /********** do we have items? **********/
+                        ?>
+                        <?php
+                        if (count($this->paginator)) :
+                            ?>
+                            <?php
+                            /********** we do! start displaying the items **********/
+                            ?>
+                            <?php
+                            foreach ($this->paginator as $item) :
+                                ?>
+                                <tr>
+			<!--<td class="tc">
+                                        <input type="checkbox" name="checkall" value="true" />
+                                    </td>--> 
+                                    <?php
+                                /********** displaying the inner columns **********/
+                                ?>
+                                    <?php
+                                foreach ($helper->getColumnIndexes() as $index) : /* start displaying columns */                                    ?>
+                                        <td>
+                                            <?php
+                                    $helper->displayItem($item, $index);
+                                    ?>
+                                        </td>
+                                    <?php
+                                endforeach
+                                ;
+                                ?>
+                                    <?php
+                                /********** finished displaying the inner columns **********/
+                                ?>
+                                    <td class="tc">
+                                        <?php
+                                echo $helper->links($item);
+                                ?>
+                                    </td>
+		</tr>    
+                            <?php
+                            endforeach
+                            ;
+                            ?>
+                            <?php
+                            /********** finished displaying the items **********/
+                            ?>
+                            <?php 
+                         else :
+                            ?>
+                            <?php
+                            /********** we don't have any items **********/
+                            ?>
+                            <tr>
+			<td
+				colspan="<?php
+                            $helper->columnCount();
+                            ?>"
+				class="emptyMessage">
+                                    <?php
+                            $helper->emptyMessage();
+                            ?>
+                                </td>
+		</tr>
+                        
+                        <?php endif;
+                        ?>
+                        <?php
+                        /********** finished do we have items? **********/
+                        ?>
+                        </tbody>
+</table>
+</fieldset>
+</form>
+<!-- <script type="text/javascript" charset="utf-8">
+                // Check all checkboxes
+                $(document).ready(function(){
+                    $("#checkboxall").click(function(){
+                        var checked_status = this.checked;
+                        $("input[name='checkall']").each(function(){
+                            this.checked = checked_status;
+                        });
+                    });
+                });
+            </script>-->
+<div class="pagination">
+                <?php
+                if ($this->paginator instanceof Zend_Paginator &&
+                 $this->paginator->count() > 1) :
+                    ?>
+                    <?php
+                    echo $this->paginator;
+                    ?>
+                
+                <?php endif;
+                ?>
+            </div>
+</div>
+</div>
+</div>

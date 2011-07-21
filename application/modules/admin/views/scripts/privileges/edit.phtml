@@ -1,0 +1,15 @@
+<?php
+/**
+ * Edit a privilege
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_privileges
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = 'Edit privilege';
+echo $this->partial('partials/default-add-edit.phtml', 
+array(
+    'form' => $this->form, 'config' => $config
+));

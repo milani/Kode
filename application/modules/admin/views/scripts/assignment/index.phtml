@@ -1,0 +1,78 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Manage Assignments';
+$config['addMessage'] = 'Add new assignment'; 
+$config['emptyMessage'] = 'No assignment found.';
+$config['linkRouter'] = array(
+    'defaultParams' => array('classid'=>$this->classId)
+);
+// additional actions
+$config['additionalActions'] = array(
+    'problems' => array(
+        'action'		=> 'index',
+        'controller'	=> 'problem',
+        'title'			=> 'Problems',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Problems',
+        'img_url'		=> '/images/led-ico/page_white_stack.png',
+        'parameter'		=> true,
+        'parameter_name'=> 'assignmentid'
+    ),
+    'copy'  =>  array(
+        'action'        => 'copy',
+        'title'         => 'Copy',
+        'link_class'    => 'ico',
+        'img_alt'       => 'Copy',
+        'img_url'       => '/images/led-ico/page_2_copy.png',
+        'parameter'     => true,
+    ),
+);
+
+$config['additionalToolbarActions'] = array(
+    'back'	=> array(
+        'action'		=> 'index',
+        'controller'	=> 'class',
+        'title'			=> 'Back to classes',
+    )
+);
+// column names & indexes
+$config['columnNames'] = array(
+    'Title',
+    'Number of problems',
+    'Class Name',
+    'Start Date',
+    'Due Date',
+    'End Date',
+    'Create Date'
+);
+$config['columnIndexes'] = array(
+    'assignment_title',
+	'problem_count',
+    'class_name',
+    'assignment_start_at',
+    'assignment_due_date',
+    'assignment_end_at',
+	'assignment_created_at',
+);
+
+// configure the permissions
+$config['linkOrder'] = array('problems','copy', 'edit', 'delete');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

@@ -1,0 +1,39 @@
+<?php
+/**
+ * 
+ *
+ * @package admin_views_forms
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<form action="" method="">
+<ul>
+    <?php
+    foreach( $this->controllers as $controller ):
+        ?>
+        <li>
+            <?php
+        echo $controller['name']?> (<?php
+        echo $controller['description'];
+        ?>)
+            <ul>
+                <?php
+        foreach( $controller['action'] as $action ):
+            ?>
+                    <li>
+                        <?php
+            echo $this->formCheckbox($action['checkbox']['name']);
+            ?>
+                    </li>
+                <?php
+        endforeach
+        ;
+        ?>
+            </ul>
+	</li>
+    <?php
+    endforeach
+    ;
+    ?>
+    </ul>
+</form>

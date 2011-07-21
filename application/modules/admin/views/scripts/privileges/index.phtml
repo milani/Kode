@@ -1,0 +1,25 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_privileges
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+// messages
+$config['pageTitle'] = 'Manage privileges';
+$config['addMessage'] = 'Add new privilege';
+$config['emptyMessage'] = 'There is not privileges registered at this time.';
+// column names & indexes
+$config['columnNames'] = array(
+    'Name', 'Flag', 'Description'
+);
+$config['columnIndexes'] = array(
+    'name', 'flag_name', 'description'
+);
+// render the default listing
+echo $this->partial('partials/default-listing.phtml', 
+array(
+    'config' => $config, 'paginator' => $this->paginator
+));

@@ -1,0 +1,1222 @@
+@font-face {
+    font-family: 'Yekan';
+    src: url('../font/yekan.eot');
+    src: url('../font/yekan.eot?iefix') format('eot'),
+         url('../font/yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* common - based on Eric Meyer's reset, you shouldn't change this section --------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    direction:rtl;
+}
+
+/* base --------------------------------------------------------- */
+body {
+    background: #ddd;
+    font: 75%/1.5 yekan,tahoma,sans-serif;
+    color: #333;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: right;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+li {
+    list-style-type: none;
+}
+hr,
+.hidden,
+#csrfhash-label,
+#csrfhash-element,
+#submit-label,
+#id-label{
+    display: none;
+}
+strong, b {
+    font-weight: bold;
+}
+em, i {
+    font-style: italic;
+}
+h2{
+    font-size: 150%;
+    margin-bottom: .5em;
+}
+
+/* basic links properties --------------------------------------------------------- */
+a {
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    color: #333;
+    -moz-outline:0;
+}
+a.alt,
+.altbox .content a {
+    border-color: #d0e4f5;
+    color: #0f5290;
+}
+a:hover, a:active, a:focus,
+a.alt:hover, a.alt:active, a.alt:focus,
+.altbox .content a:hover, .altbox .content a:active, .altbox .content a:focus {
+    border-color: #d0e4f5;
+    color: #0a80cf;
+}
+a img {
+    border: none;
+}
+
+/* abstract classes 
+.cw {
+    width: 100%;
+    overflow: hidden;
+}
+.cw2 {
+    overflow: hidden;
+    height: 1%;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+} */
+/* classic cleaner
+.cleaner {
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+} */
+/* clearfix */
+.clearfix:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+
+/* image replacement (see <h1 id="logo"> section in index.html for example) */
+.ir {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* text align helpers */
+.tl {
+    text-align: left !important;
+}
+.tr {
+    text-align: right !important;
+}
+.tc {
+    text-align: center !important;
+}
+.ttop {
+    vertical-align: top !important;
+}
+.tcheckbox {
+    width: 20px;
+}
+
+/* for buttons etc. */
+.hand {
+cursor: hand;
+cursor: pointer;
+}
+
+/* accessible hiding of elements */
+.a-hidden {
+position: absolute;
+top: -10000em;
+}
+
+/* first and last helpers, mainly for table cells */
+.first {
+border-left: 0 !important;
+}
+.last {
+border-right: 0 !important;
+}
+
+/* layout --------------------------------------------------------- */
+.inner-container {
+    width: 98%;
+}
+
+/* header --------------------------------------------------------- */
+#header {
+    border-bottom: 1px solid #2a9fec;
+    background: #0f508d url("../images/header.png") repeat-x;
+    border-bottom: 5px solid #000;
+}
+#header .inner-container {
+    margin: 0 1%;
+    position:relative;
+    min-height: 70px;
+}
+/* logo: set the width and height of your logo (in px) and margin-top depending on height of your logo */
+#header #logo {
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+#header #logo a.home {
+    border: 0;
+    display: block;
+    width: 210px;
+    height: 52px;
+    text-shadow: #003f6c 1px 1px 0;
+    font-size: 300%;
+    font-weight: bold;
+    font-style: italic;
+    color: #fff;
+}
+
+/* box for user info, settings and logout */
+#header #userbox {
+    background: #0c6eb5 url("../images/userbox.png") 10px 15px no-repeat;
+    position: relative;
+    float: left;
+    line-height: 1.5;
+    box-shadow:0 1px 0 #1c9cf0;
+    -moz-box-shadow:0 1px 0 #1c9cf0;
+    -webkit-box-shadow:0 1px 0 #1c9cf0;
+    -khtml-box-shadow:0 1px 0 #1c9cf0;                                                                                                                                           
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-bottomleft:5px;
+    -webkit-border-bottom-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -khtml-border-bottom-right-radius:5px;
+    -khtml-border-bottom-left-radius:5px;
+}
+#header #userbox .inner {
+    padding: 10px 60px 10px 60px;
+}
+#header #userbox strong a {
+    color: #fff;
+}
+#header #userbox a#logout {
+    border: 0;
+    position: absolute;
+    right: 14px;
+    top: 15px;
+    display: block;
+    width: 23px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 1;
+    font-size: 90%;
+    text-indent: -9999em;
+    background: url("../images/logout.png");
+}
+
+#header #userbox a#logout:hover,
+#header #userbox a#logout:focus,
+#header #userbox a#logout:active {
+    background-position: -23px 0;
+}
+#header #userbox strong {
+    font-size: 120%;
+    font-weight: normal;
+    color: #fff;
+}
+#header #userbox a {
+    border-color: #427da9;
+    color: #d0e1ed;
+}
+#header #userbox a:hover,
+#header #userbox a:active,
+#header #userbox a:focus {
+    border-color: #9bc4e3;
+    color: #fff;
+}
+#header #userbox ul li {
+    float: left;
+    margin-right: 7px;
+}
+
+/* navigation */
+ul#nav {
+    position:absolute;
+    top:-32px;
+    right:160px;
+    margin-right: 1%;
+    z-index:9999;
+}
+ul#nav li {
+    float:right;
+}
+ul#nav a {
+    border: 0;
+    display: block;
+    color:#fff;
+    margin-left:10px;
+    font-size:14px;
+    padding:6px 15px 5px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -khtml-border-top-left-radius:5px;
+    -khtml-border-top-right-radius:5px;
+    background: #000 url("../images/nav-li-bg.png") repeat-x;
+    box-shadow: 0 -1px 5px #0a84d4;
+    -moz-box-shadow: 0 -1px 5px #0a84d4;
+    -webkit-box-shadow: 0 -1px 5px #0a84d4;
+    -khtml-box-shadow: 0 -1px 5px #0a84d4;    
+}
+ul#nav a:hover,
+ul#nav a:focus,
+ul#nav a:active {
+    color: #fff;
+    background-position: 0 -200px;
+    box-shadow: 0 -1px 5px #58b1eb;
+    -moz-box-shadow: 0 -1px 5px #58b1eb;
+    -webkit-box-shadow: 0 -1px 5px #58b1eb;
+    -khtml-box-shadow: 0 -1px 5px #58b1eb;
+}
+ul#nav li.current a {
+    background-color: #c9c9c9;
+    background-position: 0 -100px;
+    box-shadow: 0 0 0;
+    -moz-box-shadow: 0 0 0;
+    -webkit-box-shadow: 0 0 0;
+    -khtml-box-shadow: 0 0 0;
+    color: #000;
+    border-bottom: 0;
+}
+ul#nav li.sfHover a {
+    background-color: #000;
+    background-position: 0 -200px;
+    color: #fff;
+    box-shadow: 0 -1px 5px #58b1eb;
+    -moz-box-shadow: 0 -1px 5px #58b1eb;
+    -webkit-box-shadow: 0 -1px 5px #58b1eb;
+    -khtml-box-shadow: 0 -1px 5px #58b1eb;
+}
+ul#nav li ul {
+    background: #000;
+    padding-bottom: 5px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    -khtml-border-bottom-left-radius:5px;
+    -khtml-border-bottom-right-radius:5px;
+    box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    -webkit-box-shadow: 0 0 5px #000;
+    -khtml-box-shadow: 0 0 5px #000;
+    margin-top:-2px;
+}
+ul#nav li ul a,
+ul#nav li ul a:hover,
+ul#nav li ul a:focus,
+ul#nav li.current ul a,
+ul#nav li.current ul a:hover,
+ul#nav li.current ul a:focus,
+ul#nav li.sfHover ul a,
+ul#nav li.sfHover ul a:hover,
+ul#nav li.sfHover ul a:focus{
+    background: #000;
+    border-radius:0;
+    -moz-border-radius:0;
+    -webkit-border-radius:0;
+    -khtml-border-radius:0;
+    box-shadow: 0 0 0;
+    -moz-box-shadow: 0 0 0;
+    -webkit-box-shadow: 0 0 0;
+    -khtml-box-shadow: 0 0 0;
+    border-bottom: 1px solid #333;
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+}
+ul#nav li ul a:hover,
+ul#nav li ul a:focus,
+ul#nav li.current ul a:hover,
+ul#nav li.current ul a:focus,
+ul#nav li.sfHover ul a:hover,
+ul#nav li.sfHover ul a:focus{
+    background: #333;
+    color: #fff;
+}
+
+/* content wrapper  --------------------------------------------------------- */
+#container {
+    background: url("../images/container.gif") repeat-x;
+    padding: 0 0 0 1%;
+    position: relative;
+    z-index:1;
+}
+#container .inner-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 20px 0;
+}
+div#container.withnav .outer-container{
+    margin-left:222px;
+}
+
+/* secondary navigation --------------------------------------------------------- */
+#nav-second{
+    position: absolute;
+    top:20px;
+    left:1%;
+    width: 198px;
+    border: 4px solid #e3e3e3;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -khtml-border-radius: 9px;
+    box-shadow: #aaa 0 0 10px;
+    -moz-box-shadow: #aaa 0 0 10px;
+    -webkit-box-shadow: #aaa 0 0 10px;
+    -khtml-box-shadow: #aaa 0 0 10px;
+    font-size: 120%;
+    background-color:#e3e3e3;
+}
+#nav-second h2{
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 120%;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-text-shadow: 0 1px 0 #fff;
+    -khtml-text-shadow: 0 1px 0 #fff;
+}
+#nav-second h2 a{
+    border-bottom: 0;
+}
+#nav-second h2 a:hover,
+#nav-second h2 a:focus{
+    color: #999;
+}
+#nav-second ul {
+    border: 1px solid #999;
+    background: #fff;
+    padding: 10px 10px 40px 10px;
+    border-radius: 6px;   
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -khtml-border-radius: 6px;
+}
+#nav-second ul a {
+    border: 0;
+    display: block;
+    padding: 5px 10px 3px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+#nav-second ul a:hover,
+#nav-second ul a:focus,
+#nav-second ul a:active{
+    border-color: #9fc7e9;
+    background-color: #d0e4f5;
+    color: #0a80cf;
+}
+#nav-second ul li.current a {
+    background-color: #eee;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+/* footer --------------------------------------------------------- */
+#footer {
+    clear: both;
+    padding: 20px 0 10px 0;
+    text-align: center;
+}
+#footer p {
+    margin: 0 0 10px 0;
+    color: #999;
+}
+#footer a {
+    color: #777;
+}
+#footer a:hover,
+#footer a:active,
+#footer a:focus {
+    border: none;
+}
+
+/* stylish buttons with rounded corners --------------------------------------------------------- */
+.button {
+    border: 1px solid #00487a;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #0567ad url("../images/button.gif") repeat-x;
+    padding: 5px 9px 5px;
+    text-shadow: #00487a 1px 1px 0;
+    color: #fff;
+    cursor: pointer;
+}
+.button:hover,
+.button:focus,
+.button:active {
+    border-color: #272727;
+    background: #2a2a2a url("../images/altbutton.gif") repeat-x;
+    text-shadow: #000 1px 1px 0;
+    color: #fff;
+}
+form.basic .button,
+form.fields .button {
+    font-size: 13px;
+}
+#fieldset-sidebar{
+	float:right;
+}
+#fieldset-main{
+	float:left;
+}
+    /* alternative colors
+.altbox .button {
+    border: 1px solid #272727;
+    background: #2a2a2a url("img/altbutton.gif") repeat-x;
+    text-shadow: #000 1px 1px 0;
+}
+.altbox .button:hover,
+.altbox .button:focus,
+.altbox .button:active {
+    border-color: #00487a;
+    background: #0567ad url("img/button.gif") repeat-x;
+    text-shadow: #00487a 1px 1px 0;
+    color: #fff;
+}
+.altbutton {
+    border: 1px solid #272727;
+    background: #2a2a2a url("img/altbutton.gif") repeat-x;
+    text-shadow: #000 1px 1px 0;
+}
+.altbutton:hover,
+.altbutton:focus,
+.altbutton:active {
+    border-color: #00487a;
+    background: #0567ad url("img/button.gif") repeat-x;
+    text-shadow: #00487a 1px 1px 0;
+    color: #fff;
+}
+.altbox .altbutton {
+    border: 1px solid #00487a;
+    background: #0567ad url("img/button.gif") repeat-x;
+    text-shadow: #00487a 1px 1px 0;
+}
+.altbox .altbutton:hover,
+.altbox .altbutton:focus,
+.altbox .altbutton:active {
+    border-color: #272727;
+    background: #2a2a2a url("img/altbutton.gif") repeat-x;
+    text-shadow: #000 1px 1px 0;
+    color: #fff;
+} */
+
+/* icons for content links etc. --------------------------------------------------------- */
+.ico {
+    border: 0 !important;
+}
+.ico-a {
+    border: 0 !important;
+    padding-left: 20px !important;
+}
+
+/* tags, filetypes --------------------------------------------------------- */
+.tag {
+    padding: 4px 7px;
+    color: #fff !important;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.tag-gray {
+    border-bottom: 1px solid #666;
+    background: #999;
+    background: gradient(linear, left top, left bottom, from(#bbb), to(#999));
+    background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#999));
+}
+
+/* error/information messages --------------------------------------------------------- */
+.msg {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid;
+    margin: 0 1% 15px 0;
+    padding: 8px 10px 0 10px;
+    font-size: 16px;
+}
+.box .msg {
+    margin-right: 0;
+    font-size: 1em;
+}
+#login .msg p{
+    padding-top: 2px;
+}
+.msg p {
+    margin: 0 0 4px 0;
+    padding-left: 25px;
+}
+.msg-success {
+    border-color: #a6d877;
+    background: #d2ecba url("../images/msg-ok.png") repeat-x;
+    color: #336801;
+}
+.msg-success p {
+    background: url("../images/led-ico/accept.png") 0 2px no-repeat;
+}
+.msg-error {
+    border-color: #f3abab;
+    background: #f9c9c9 url("../images/msg-error.png") repeat-x;
+    color: #8d0d0d;
+}
+.msg-error p {
+    background: url("../images/led-ico/cross_octagon.png") 0 2px no-repeat;
+}
+.msg-warn {
+    border-color: #d7e059;
+    background: #f3f7aa url("../images/msg-warn.png") repeat-x;
+    color: #6c6600;
+}
+.msg-warn p {
+    background: url("../images/led-ico/exclamation_octagon_fram.png") 0 2px no-repeat;
+}
+.msg-info {
+    border-color: #9fd1f5;
+    background: #c3e6ff url("../images/msg-info.png") repeat-x;
+    color: #005898;
+}
+.msg-info p {
+    background: url("../images/led-ico/exclamation.png") 0 2px no-repeat;
+}
+
+/* forms --------------------------------------------------------- */
+form {
+    padding: 1.8em;
+}
+legend{
+    font-size: 120%;
+    font-weight: bold;
+    border-bottom: 4px solid #999;
+    display: block;
+    width: 50%;
+    margin-bottom: 1em;
+	margin-top:1em;
+}
+form dt{
+    line-height: 1em;
+    font-size: 13px;
+}
+form dd{
+    margin-bottom: 1.5em;
+}
+input[type='text'],
+input[type='password'],
+textarea {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: 1px solid #999;
+    background:#fff url("../images/txt.gif") repeat-x;
+    padding: 5px 4px;  
+    width: 240px;
+    font-size: 13px;
+    margin-top:4px;
+}
+
+select{
+    padding: 2px 0;
+    font-size: 12px;
+}
+option{
+    padding-right: 10px;
+}
+/* Plain form */
+form.plain {
+    padding: 0;
+}
+input[type='submit'],button[type='submit'] {
+    border: 1px solid #00487a;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #0567ad url("../images/button.gif") repeat-x;
+    padding: 5px 9px 5px;
+    text-shadow: #00487a 1px 1px 0;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #00487a;
+    background: #0567ad url("../images/button.gif") repeat-x;
+    text-shadow: #00487a 1px 1px 0;
+    font-family:yekan,inherit;
+}
+input[type='submit']:hover,button[type='submit']:hover {
+    border-color: #272727;
+    background: #2a2a2a url("../images/altbutton.gif") repeat-x;
+    text-shadow: #000 1px 1px 0;
+    color: #fff;
+}
+td.actions-selected input[type='submit'] {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 5px;
+}
+/* or span*/
+form span.or {
+    padding: 0 .5em;
+    color: #aaa;
+}
+/* errors */
+ul.errors{
+    color: #B70B0B;
+    margin-top: 4px;
+}
+/* checkboxGroup */
+body.usersadd dt.checkboxGroup{
+    display: none;
+} 
+dd.checkboxGroup label{
+    font-size: 110%;
+}
+dd.checkboxGroup br{
+    margin-bottom: 5px;    
+}
+dd.radiocheck{
+	float:right;
+}
+dt.radiocheck{
+	line-height:25px;
+	margin:18px;
+}
+/* final action --------------------------------------------------------- */
+div.finalaction{
+    padding: 1.8em 1.8em 0;
+}
+div.finalaction th,
+div.finalaction td{
+    font-size: 120%;
+}
+div.finalaction th{
+    padding-left: 1em;
+}
+div.finalaction table{
+    padding: 1em;
+    border-right: 5px solid #ccc;
+    margin: 0 2em 1em 0;
+}
+div.finalaction form{
+    padding:0 1.8em 1.8em;
+    margin-left: 2px;
+}
+div.finalaction p.back{
+    padding:0 1.8em 1.8em;
+    margin-right: 2px;
+    font-size: 110%;
+}
+
+form .dateBox{
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: 1px solid #999;
+    background:#fff url("../images/txt.gif") repeat-x;
+    padding: 5px 4px;  
+    width: 220px;
+    min-height:16px;
+    font-size: 13px;
+    float:right;
+    margin-top:4px;
+}
+form .dateBtn{
+padding:4px;
+}
+/* plain forms - used in tabular and grid data structures, TAKE CARE of it, please
+form.plain fieldset {
+    border: 0 !important;
+    padding: 0 !important;
+}
+form.basic dl {
+    width: 100%;
+    overflow: hidden;
+} */
+/* basic layout for forms
+form.basic dl dt,
+form.basic dl dd {
+    float: left;
+}
+form.basic dl dt {
+    padding: 3px 5px 3px 0;
+    width: 20%;
+}
+form.basic dl dd {
+    padding: 3px 0 3px 5px;
+    width: 76%;
+}
+label.check,
+label.radio {
+    margin-right: 5px;
+}
+form small {
+    color: #999;
+    margin-left: 10px;
+}*/
+/*
+form.basic input.txt,
+form.basic textarea {
+width: 100%;
+}
+input.error,
+textarea.error {
+border-color: #d35757;
+background-image: url("img/txt-error.gif");
+}
+span.loading {
+background: url("img/upload.gif") 0 50% no-repeat;
+padding: 3px 0 3px 20px;
+}
+form.fields,
+form.basic {
+    font-size: 13px;
+}
+form input,
+form textarea,
+form select {
+    font-family: "myriad pro", helvetica, arial, sans-serif;
+    font-size: 13px;    
+}
+
+.error {
+    color: #b70b0b;
+} */
+
+/* plain and clean layout for forms
+form.fields fieldset {
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border: 1px solid #ccc;
+margin-bottom: 15px;
+padding: 10px 15px 15px 15px;
+}
+form.fields fieldset.last {
+margin-bottom: 0;
+border-right: 1px solid #ccc !important;
+}
+form.fields fieldset legend {
+padding: 0 10px;
+font-size: 110%;
+}
+form.fields label,
+form.fields div.sep {
+display: block;
+margin-top: 10px;
+}
+form.fields label.check,
+form.fields label.radio {
+display: inline;
+margin-top: 0;
+}
+form.fields span.loading {
+margin-left: 10px;
+} */
+
+/* lists for actions (remove, modify) */
+ul.actions {
+margin: 0;
+}
+ul.actions li {
+display: inline;
+margin-right: 5px;
+}
+
+/* content boxes */
+.box {
+float: right;
+width: 99%;
+margin: 0 1% 20px 0;
+}
+.box-25 {
+width: 24%;
+}
+/* 25% box */
+.box-50 {
+width: 49%;
+}
+/* 50% box */
+.box-75 {
+width: 74%;
+}
+/* 75% box */
+.box-100 {
+width:99%;
+}
+/* 100% box */
+.altbox {
+}
+/* class for alternative (emphasized) boxes (blue headings and colors) */
+    /* wrap of box's content */
+.boxin {
+box-shadow: #aaa 0 0 10px;
+-webkit-box-shadow: #aaa 0 0 10px;
+-moz-box-shadow: #aaa 0 0 10px;
+border: 1px solid #999;
+border-radius: 6px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+background: #fff;
+}
+    /* boxes' headers */
+.box .header {
+background: #3d3d3d url("../images/headerbox.png") repeat-x;
+border-top: 1px solid #444;
+border-radius: 5px 5px 0 0;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+position: relative;
+margin: -1px -1px 0 -1px;
+padding: 7px 20px 9px 0;
+}
+.altbox .header {
+border-top-color: #0a81d0;
+background: #0f518e url("../images/altheaderbox.png") repeat-x;
+}
+.box .header h1 {
+position: relative;
+top: 2px;
+display: inline;
+font-size: 200%;
+color: #fff;
+text-shadow: #151515 0 1px 0;
+}
+.altbox .header h1 {
+text-shadow: #003d68 0 1px 0;
+}
+.box .header .button {
+margin-right: 15px;
+}
+    /* tags in the header */
+.box .header ul {
+position: absolute;
+right: 9px;
+bottom: 0;
+}
+.box .header ul li {
+display: inline;
+}
+.box .header ul a {
+border-radius: 5px 5px 0 0;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+background: #777;
+border: 0;
+float: left;
+margin: 0 0 0 5px;
+padding: 8px 13px 6px;
+color: #fff;
+}
+.box .header ul a.active,
+.box .header ul a:hover,
+.box .header ul a:focus,
+.box .header ul a:active {
+background: #fff url("../images/headertab.png") repeat-x;
+color: #444;
+}
+.altbox .header ul a {
+background-color: #489cd4;
+}
+.altbox .header ul a.active,
+.altbox .header ul a:hover,
+.altbox .header ul a:focus,
+.altbox .header ul a:active {
+background: #fff url("../images/altheadertab.png") repeat-x;
+color: #0f518e;
+}
+    /* boxes' content types tabular */
+.box .content {
+    margin-bottom: 5px;
+}
+.box .content table {
+    width: 100%;
+}
+.box .content table th,
+.box .content table td {
+    padding: 10px 10px 8px 10px;
+}
+.box .content table th {
+    text-align: right;
+    font-weight: normal;
+}
+.box .content table tr.even th,
+.box .content table tr.even td {
+    background: #f5f5f5;
+}
+.altbox .content table tr.even th,
+.altbox .content table tr.even td {
+    background: #f0f9ff;
+}
+.box .content table th.first,
+.box .content table td.first {
+    padding-right: 20px;
+}
+.box .content table thead th,
+.box .content table thead td {
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #d5d5d5;
+    background: #ddd url("../images/thead.gif") repeat-x;
+    text-shadow: #fff 0 1px 0;
+}
+.box .content table tbody tr.first th,
+.box .content table tbody tr.first td {
+    border-top: 1px solid #bbb;
+}
+.altbox .content table tbody {
+    color: #00305d;
+}
+.box .content table a.ico-comms {
+    border: 0;
+    background: url("../images/ico-tablecomms.gif") 50% 60% no-repeat;
+    padding: 10px;
+    color: #fff;
+}
+.box .content table tfoot th,
+.box .content table tfoot td {
+    border-top: 1px solid #ccc;
+    background: #fff url("../images/tfoot.gif") repeat-x;
+}
+
+    /* boxes' pagination */
+.pagination {
+    border-top: 1px solid #999;
+    background: #fff url("../images/pagination.gif") repeat-x;
+    text-align: center;
+    color: #333 !important;
+}
+.pagination ul {
+    position: relative;
+    top: -1px;
+    padding: 12px 10px 6px;
+}
+.pagination ul li {
+    display: inline;
+}
+.pagination a {
+    border: 0;
+    background: #ebebeb url("../images/pagination-item.gif") repeat-x;
+    margin: 0 5px;
+    padding: 6px 10px;
+    color: #333 !important;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 5px;
+}
+.pagination a:hover,
+.pagination a:active,
+.pagination a:focus {
+    color: #0a80cf !important;
+}
+.pagination strong {
+    background: url("../images/pagination-arrow.gif") 50% 0 no-repeat;
+    padding: 15px 10px 8px;
+}
+    
+/* login page --------------------------------------------------------- */
+#login {
+    background: #222;
+    padding: 100px;
+}
+#login .box {
+    float: none;
+    margin: 0 auto;
+}
+#login .boxin {
+    box-shadow: #000 0 0 10px;
+    -webkit-box-shadow: #000 0 0 10px;
+    -moz-box-shadow: #000 0 0 10px;
+    -khtml-box-shadow: #000 0 0 10px;
+    border: 0;
+}
+#login .box-50 {
+    width: 470px;
+}
+#login .header {
+    padding-top: 0px;
+    padding-bottom: 5px;
+    margin: 0;
+}
+#login .inner-form {
+    padding: 18px 10px 0;
+}
+#login form{
+    width: 332px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+#login form:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+#login form {display: inline-block;}
+/* Hides from IE-mac \*/
+* html #login form {height: 1%;}
+#login form {display: block;}
+/* End hide from IE-mac */
+
+#login dt{
+    margin-top: 8px;
+    padding: 0em;
+    line-height: 1em;
+    font-size: 120%;
+    width: 80px;
+}
+#login dd {
+    margin-bottom: 15px;
+    width: 240px;
+}
+#login dt,
+#login dd {
+    float: right;
+}
+#login input[type='text'],
+#login input[type='password'] {
+    width: 240px;
+    padding: 5px;
+    font-size: 110%;
+}
+#login dd#submit-element {
+    text-align: left;
+    float: none;
+    width: auto;
+    clear: both;
+}
+#login dd#submit-element input {
+    font-size:110%;
+}
+#login dd.links{
+	text-align:left;
+	float:none;
+	width:auto;
+	clear:both;
+}
+#login #recoverusername-label{
+	display:none;
+}
+#login #recoverusername-element{
+	width:auto;
+}
+#login #resetpassword-label{
+	display:none;
+}
+#login #resetpassword-element{
+	width:auto;
+}
+#login #submitemail-element {
+    text-align: left;
+    float: none;
+    width: auto;
+    clear: both;
+}
+#login #submitemail-element input {
+    font-size:110%;
+}
+/* Error pages --------------------------------------------------------- */
+div#errorpage{
+    margin-right: 1%;
+    padding: 1em;
+}
+div#errorpage img.error404{
+    float: left;
+    margin-right: 3em;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -moz-border-radius:6px;
+    -moz-border-radius:6px;
+}
+div#errorpage h1{
+    font-size: 3em;
+    padding-top: 1em;
+}
+div#errorpage p{
+    font-size: 2em;
+}
+
+/* Edit permmissions page --------------------------------------------------------- */
+body.groupspermissions dl:after {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+body.groupspermissions dl {display: inline-block;}
+/* Hides from IE-mac \*/
+* html body.groupspermissions dl {height: 1%;}
+body.groupspermissions dl {display: block;}
+/* End hide from IE-mac */
+body.groupspermissions fieldset dt,
+body.groupspermissions fieldset dd{
+    float: left;
+}
+body.groupspermissions fieldset dd{
+    clear: left;
+    margin-bottom: .5em;
+}
+body.groupspermissions fieldset dt{
+    margin: 5px 0 0 3px;
+}
+
+.emptyMessage{
+    text-align: center;
+    font-weight: bold;
+}

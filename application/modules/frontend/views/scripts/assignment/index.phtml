@@ -1,0 +1,74 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Assignments'; 
+$config['emptyMessage'] = 'No assignment found.';
+
+// additional actions
+$config['additionalActions'] = array(
+    'download' => array(
+        'action'		=> 'download',
+        'controller'	=> 'assignment',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/drive_disk.png',
+        'parameter'		=> true
+    ),
+    'print'	=> array(
+        'action'		=> 'print',
+        'controller'	=> 'assignment',
+        'title'			=> 'Print',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Print',
+        'img_url'		=> '/images/led-ico/printer.png',
+        'parameter'		=> true
+    ),
+    'problems' => array(
+        'action'		=> 'index',
+        'controller'	=> 'problem',
+        'title'			=> 'Problems',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Problems',
+        'img_url'		=> '/images/led-ico/page_white_stack.png',
+        'parameter'		=> true,
+        'parameter_name'=> 'assignmentid'
+    )
+);
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Title',
+    'Number of problems',
+    'Start Date',
+    'Due Date',
+    'End Date',
+);
+$config['columnIndexes'] = array(
+    'assignment_title',
+    'problem_count',
+    'assignment_start_at',
+    'assignment_due_date',
+    'assignment_end_at',
+);
+
+// configure the permissions
+$config['linkOrder'] = array('download','print','problems');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

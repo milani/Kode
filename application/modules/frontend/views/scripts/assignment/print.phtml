@@ -1,0 +1,8 @@
+<?php 
+echo $this->partial('partials/print-problem.phtml',
+            array(
+                'problems'	    => $this->problems,
+                'assignment'	=> $this->assignment,
+                'attachments'	=> $this->attachments
+            )
+        );

@@ -1,0 +1,27 @@
+<?php
+/**
+ * Displays all the registered users
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_users
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+// messages
+$config['pageTitle'] = 'Manage users';
+$config['addMessage'] = 'Add new user';
+$config['emptyMessage'] = 'We don\'t have users registered at this time.';
+// column names & indexes
+$config['columnNames'] = array(
+    'Username', 'First name', 'Last name', 'Groups'
+);
+$config['columnIndexes'] = array(
+    'username', 'firstname', 'lastname', 'groups'
+);
+$config['viewLinkColumn'] = 'username';
+// render the default listing
+echo $this->partial('partials/default-listing.phtml', 
+array(
+    'config' => $config, 'paginator' => $this->paginator
+));

@@ -1,0 +1,24 @@
+<?php
+/**
+ * View that defines the default add/edit UI 
+ *
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage partials
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$helper = $this->listingUtilities($this->config);
+?>
+<div class="box box-<?php echo (isset($this->boxsize))?$this->boxsize:'100';?> altbox">
+	<div class="boxin">
+		<div class="header">
+			<h1><?php $helper->pageTitle();?></h1>
+		</div> 
+        <?php
+        echo $this->form;
+        ?>
+        <div class="clearfix"></div>
+	</div>
+</div>
+

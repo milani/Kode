@@ -5,11 +5,8 @@
  * @category public
  * @package public
  * @subpackage public_frontend
- * @copyright Weapi
+ * @copyright Copyright (c) 2011, Morteza Milani
  */
-
-
 // holds the name of the current module
 define('CURRENT_MODULE', 'frontend');
-
-require './../index.base.php';
+require './index.base.php';

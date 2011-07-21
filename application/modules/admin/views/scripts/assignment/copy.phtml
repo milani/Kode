@@ -1,0 +1,15 @@
+<?php
+/**
+ * Edit an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Copy assignment "%s"', $this->item['assignment_title']);
+echo $this->partial('partials/default-add-edit.phtml', 
+array(
+    'form' => $this->form, 'config' => $config
+));

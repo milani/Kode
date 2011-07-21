@@ -1,0 +1,208 @@
+<?php 
+$title = $this->assignment['assignment_title'] . ' - ' . $this->assignment['class_name'];
+
+?>
+
+<!doctype html>
+<html>
+    <head>
+        <title><?php echo $title?></title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+	{
+	display: block;
+}
+
+nav ul {
+	list-style: none;
+}
+
+blockquote,q {
+	quotes: none;
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+	content: '';
+	content: none;
+}
+
+a {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+ins {
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
+}
+
+mark {
+	background-color: #ff9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+abbr[title],dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+/* tables still need cellspacing="0" in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input,select {
+	vertical-align: middle;
+}
+.clearfix:before,.clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/* fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix {
+	zoom: 1;
+}
+p{
+    text-align:justify;
+}
+body {
+	font: 13px/1.231 sans-serif;
+	direction: rtl;
+	padding:1em;
+}
+.header{
+    padding-bottom:1em;
+    border-bottom:1px solid #444;
+    margin-bottom: 0.5em;
+}
+h1{
+    float:right;
+    font-size:1.2em;
+}
+.dates{
+	margin-bottom: 2em;
+	float:right;
+	width:100%;
+}
+.dates > div{
+	width: 25%;
+	padding:0.3%;
+	float:right;
+}
+.container{
+    width:100%;
+}
+.content{
+    float:right;
+    width:73%;
+}
+.number{
+	font-weight:bold;
+	font-size:120%;
+	float:right;
+	padding-top:-3px;
+}
+.sidebar{
+    float:left;
+    width:22%;
+}
+.sidebar > div{
+    margin-bottom:4em;
+}
+.label{
+    float:right;
+}
+.label:after{
+    content: " : ";
+}
+@page {
+    margin: 0.5cm;
+    padding:0.0cm;
+}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1><?php echo $title?></h1>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="dates">
+        	<div>
+                <div class="label"><?php echo $this->t('Start date');?></div>
+                <div class="date"><?php echo $this->formatDate($this->startDate);?></div>
+            </div>
+            <div>
+                <div class="label"><?php echo $this->t('Due date');?></div>
+                <div class="date"><?php echo $this->formatDate($this->dueDate);?></div>
+            </div>
+            <div>
+                <div class="label"><?php echo $this->t('End date');?></div>
+                <div class="date"><?php echo $this->formatDate($this->endDate);?></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <?php foreach($this->problems as $index => $problem):?>
+        <div class="container">
+        	<div class="number">
+        		<?php echo $problem['problem_number'];?>.
+        	</div>
+            <div class="content">
+                <?php echo $problem['problem_desc'];?>
+            </div>
+            <div class="sidebar">
+                <div class="attachments">
+                    <h4><?php echo $this->t('Attachments');?></h4>
+                    <?php if(isset($this->attachments[$problem['id']])):?>
+                        <ul>
+                        <?php foreach($this->attachments[$problem['id']] as $attachment):?>
+                        	<li><?php echo $attachment['file_name']?></li>
+                        <?php endforeach;?>
+                        </ul>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <?php endforeach;?>
+    </body>
+</html>

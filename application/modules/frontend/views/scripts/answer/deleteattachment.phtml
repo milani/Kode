@@ -1,0 +1,23 @@
+<?php
+/**
+ * Delete an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = 'Delete attachment';
+$config['areYouSureMessage'] = 'Are you sure you want to delete this attachment?';
+// column names & indexes
+$config['columnNames'] = array(
+    'File name'
+);
+$config['columnIndexes'] = array(
+    'submission_file_name'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

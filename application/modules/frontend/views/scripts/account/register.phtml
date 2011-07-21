@@ -1,0 +1,18 @@
+<?php
+/**
+ * View that allows the user to change his/her password
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_profile
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<div class="inner-form">
+    <?php if( isset($this->error) ):?>
+    <div class="msg msg-error">
+		<p><?php echo '<strong>'.$this->t('Login failed').'</strong>.<br />'.$this->t('Please check that you wrote your Username and Password correctly').'.';?></p>
+	</div>
+    <?php endif;?>
+    <?php echo $this->form;?>
+</div>

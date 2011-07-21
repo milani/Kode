@@ -1,0 +1,70 @@
+<?php
+/**
+ * Layout used to display error pages
+ *
+ * @category admin
+ * @package admin_layouts
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+// configure the title
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Copyright (c) 2011, Morteza Milani');
+// add generic scripts
+$this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');
+// add custom CSS
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+$this->headLink()->headLink(array('rel' => 'shortcut icon',
+                                  'href' => $this->baseUrl().'/favicon.ico',
+                                  'type' => 'image/x-icon'),
+                                  'PREPEND');
+//Add the ZFDebug Toolbar only if enabled in app.ini
+if( Zend_Registry::get('config')->zfdebug->enabled ){
+    $this->headScript()->appendFile($this->baseUrl() . '/js/zfdebug.js');
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/zfdebug.css');
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" /> 
+        
+        <?php
+        echo $this->headTitle() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headScript() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headStyle() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headLink() . PHP_EOL;
+        ?>
+    </head>
+<body>
+<div id="header">
+<div class="inner-container clearfix">
+<h1 id="logo"><a class="home" href="<?php echo $this->baseUrl();?>/" title="<?php echo $this->t('Go to homepage')?>"> <?php echo $this->t('Kode');?> </a></h1>
+</div>
+<!-- .inner-container --></div>
+<!-- #header -->
+
+<div id="container">
+
+<div class="outer-container">
+<div class="inner-container"> 
+                    <?php
+                    echo $this->layout()->content;
+                    ?>
+                </div>
+<div id="footer"><!-- footer, maybe you don't need it -->
+<p>Copyright © 2010 Copyright (c) 2011, Morteza Milani, All rights reserved.</p>
+</div>
+</div>
+<!-- .inner-container --></div>
+<!-- #container -->
+</body>
+</html>

@@ -1,0 +1,70 @@
+<?php
+/**
+ * View for listing attachments
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage partials
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$helper = $this->listingUtilities($this->config);
+?>
+<div class="box box-25 altbox">
+	<div class="boxin">
+		<div class="header">
+			<h1><?php echo $helper->pageTitle();?></h1>
+		</div>
+		<div class="content">
+		<table>
+		<tbody>
+        <?php if (!empty($this->attachments)) :?>
+            <?php foreach ($this->attachments as $item) :?>
+            	<tr>
+	                <?php foreach ($helper->getColumnIndexes() as $index) :?>
+                	<td>
+                        <?php $helper->displayItem($item, $index);?>
+                    </td>
+                   <?php endforeach;?>
+                    <td class="tc">
+                        <?php echo $helper->links($item);?>
+                    </td>
+				</tr>
+            <?php endforeach;?>
+        <?php else : ?>
+			<tr>
+				<td colspan="<?php $helper->columnCount();?>" class="emptyMessage">
+                    <?php $helper->emptyMessage();?>
+                </td>
+			</tr>            
+       <?php endif;?>
+       <?php if(isset($this->id) && $helper->can('download',$this->controllerName)):?>
+       <?php
+        // additional actions
+        $config['additionalActions'] = array(
+            'download' => array(
+                'action'		=> 'download',
+                'controller'	=> $this->controllerName,
+                'title'			=> 'Download Archive',
+                'link_class'	=> 'ico',
+                'img_alt'		=> 'Download Archive',
+                'img_url'		=> '/images/led-ico/download.png',
+                'parameter'		=> true
+            )
+        );
+        $config['linkOrder'] = array('download');
+        $helper = $this->listingUtilities($config);
+       ?>
+       		<tr>
+       			<td>
+       				<?php echo $this->t('Download Archive');?>
+       			</td>
+       			<td class="tc">
+       				<?php echo $helper->links(array('id'=>$this->id));?>
+       			</td>
+       		</tr>
+        <?php endif;?>
+		</tbody>
+		</table>
+        </div>
+	</div>
+</div>

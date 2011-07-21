@@ -1,0 +1,63 @@
+<?php
+/**
+ * Displays all the registered users
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_users
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+// messages
+$config['pageTitle'] = 'Manage Assistants';
+$config['addMessage'] = 'Add new assistant';
+$config['showAddButton'] = false;
+$config['additionalToolbarActions'] = array(
+    'add' => array(
+        'action' => 'addassistant',
+        'controller' => 'users',
+		'title' => 'Add new assistant',
+    )
+);
+$config['emptyMessage'] = 'We don\'t have any assitant registered at this time.';
+// column names & indexes
+$config['columnNames'] = array(
+    'Username', 'First name', 'Last name', 'Groups', 'Active'
+);
+$config['columnIndexes'] = array(
+    'username', 'firstname', 'lastname', 'groups', 'active'
+);
+
+$config['columnDataTypes'] = array(
+    'active' => 'boolean'
+);
+$config['nullPlaceholders'] = array(
+    'active' => '<img src="'.$this->baseUrl().'/images/led-ico/cross.png" />'
+);
+
+$config['additionalActions'] = array(
+    'active'  		=>	array(
+    	'action'		=> 'toggleactive',
+    	'title'			=> 'Toggle Active',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/lightbulb.png',
+        'img_alt'		=> 'Toggle Active'
+    ),
+    'editassistant'          =>  array(
+        'action'		=> 'editassistant',
+    	'title'			=> 'Edit',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/pencil.png',
+        'img_alt'		=> 'Edit'
+    )
+);
+
+$config['linkOrder'] = array('active','editassistant','delete');
+
+// render the default listing
+echo $this->partial('partials/default-listing.phtml', 
+array(
+    'config' => $config, 'paginator' => $this->paginator
+));

@@ -1,0 +1,26 @@
+<?php
+/**
+ * Delete an user 
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_users
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Delete "%s"?', $this->item['username']);
+$config['areYouSureMessage'] = sprintf(
+'Are you sure you want to delete user "%s"?', $this->item['username']);
+// column names & indexes
+$config['columnNames'] = array(
+    'Username', 'Email', 'First name', 'Last name', 'Phone number', 
+'Last login', 'Last password update', 'Groups'
+);
+$config['columnIndexes'] = array(
+    'username', 'email', 'firstname', 'lastname', 'phone_number', 
+'last_login', 'last_password_update', 'groups'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

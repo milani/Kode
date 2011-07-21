@@ -1,0 +1,89 @@
+<?php
+/**
+ * Displays all submissions for a problem
+ *
+ * @package admin_views
+ * @subpackage admin_views_submission
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'View Submissions';
+$config['showAddButton'] = false;
+$config['emptyMessage'] = 'No submission yet.';
+$config['linkRouter'] = array(
+    'defaultParams'	=> array('classid'=>$this->classId,'assignmentid'=>$this->assignmentId,'problemid'=>$this->problemId)
+);
+
+$config['additionalToolbarActions'] = array(
+    'download'	=> array(
+        'action'		=> 'downloadall',
+        'controller'	=> 'submission',
+        'title'			=> 'Download All'
+    ),
+    'grade'	=> array(
+        'action'		=> 'gradeall',
+        'controller'	=> 'submission',
+        'title'			=> 'Import grades from file'
+    ),
+	'back'	=> array(
+        'action'		=> 'index',
+        'controller'	=> 'problem',
+        'title'			=> 'Back to problems'
+    )
+);
+
+// additional actions
+$config['additionalActions'] = array(
+    'grade' => array(
+        'action'		=> 'grade',
+        'controller'	=> 'submission',
+        'title'			=> 'Grade Submission',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Grade Submission',
+        'img_url'		=> '/images/led-ico/page_white_star.png',
+        'parameter'		=> true
+    ),
+    'download' => array(
+        'action'		=> 'download',
+        'controller'	=> 'submission',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/download.png',
+        'parameter'		=> true
+    )
+);
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Student Number',
+    'Description',
+    'Attachments',
+    'Submit Date',
+    'Grade',
+);
+$config['columnIndexes'] = array(
+    'username',
+    'submission_desc',
+	'attachment_count',
+    'submission_at',
+    'grade'
+);
+
+$config['nullPlaceholders'] = array(
+    'grade'	=> $this->t('No grade')
+);
+
+$config['linkOrder'] = array('grade', 'download');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

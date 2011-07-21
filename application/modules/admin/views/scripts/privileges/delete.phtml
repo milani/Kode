@@ -1,0 +1,23 @@
+<?php
+/**
+ * Delete a privilege
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_privileges
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = 'Delete privilege';
+$config['areYouSureMessage'] = 'Are you sure you want to delete the privilege?';
+// column names & indexes
+$config['columnNames'] = array(
+    'Name', 'Flag', 'Description'
+);
+$config['columnIndexes'] = array(
+    'name', 'flag_name', 'description'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

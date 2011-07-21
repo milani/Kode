@@ -1,0 +1,49 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Answered Problems'; 
+$config['emptyMessage'] = 'No answered problem found.';
+
+// additional actions
+$config['additionalActions'] = array(
+    'submissions' => array(
+        'action'		=> 'answer',
+        'controller'	=> 'problem',
+        'title'			=> 'Edit Answer',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Edit Answer',
+        'img_url'		=> '/images/led-ico/page_white_text.png',
+        'parameter'		=> true
+    ),
+);
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Number',
+    'Description',
+);
+$config['columnIndexes'] = array(
+    'problem_number',
+    'problem_desc',
+);
+
+// configure the permissions
+$config['linkOrder'] = array('submissions');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

@@ -1,0 +1,24 @@
+<?php
+/**
+ * Delete an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Delete "%s" user group', $this->item['name']);
+$config['areYouSureMessage'] = sprintf(
+'Are you sure you want to delete "%s" user group?', $this->item['name']);
+// column names & indexes
+$config['columnNames'] = array(
+    'Group', 'Parent group'
+);
+$config['columnIndexes'] = array(
+    'name', 'parent_name'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

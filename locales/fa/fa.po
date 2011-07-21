@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: App\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-21 18:41+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Morteza Milani <alaki@dolaki.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: username\n"
+
+#: application/modules/example/views/scripts/example/index.phtml:11
+msgid "Administration"
+msgstr "مدیریت"
+
+msgid "log out"
+msgstr "خروج"
+
+msgid "View"
+msgstr "نمایش"
+
+msgid "Previous"
+msgstr "قبلی"
+
+msgid "Next"
+msgstr "بعدی"
+
+msgid "or"
+msgstr "یا"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Yes, delete it"
+msgstr "بله، حذفش کن"
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Password"
+msgstr "کلمه عبور"
+
+msgid "Groups"
+msgstr "گروه ها"
+
+msgid "Manage user groups"
+msgstr "مدیریت گروه های کاربری"
+
+msgid "Cancel"
+msgstr "انصراف"
+
+msgid "Log in →"
+msgstr "ورود"
+
+msgid "Login"
+msgstr "ورود"
+
+msgid "Log out"
+msgstr "خروج"
+
+msgid "Value is required and can't be empty"
+msgstr "پر کردن این فیلد الزامی است"
+
+msgid "Login failed"
+msgstr "ورود با خطا مواجه شد"
+
+msgid "Please check that you wrote your Username and Password correctly"
+msgstr "لطفا از صحت نام کاربری و کلمه عبور خود اطمینان حاصل نمایید"
+
+msgid "Go to admin's homepage"
+msgstr "بازگشت به صفحه اصلی مدیریت"
+
+msgid "Change password"
+msgstr "تغییر کلمه عبور"
+
+msgid "I forgot my username"
+msgstr "شناسه کاربری را فراموش کرده ام"
+
+msgid "I forgot my password"
+msgstr "کلمه عبورم را فراموش کرده ام"
+
+msgid "Register As Teacher Assistant"
+msgstr "فرم درخواست برای دستیاری دروس"
+
+msgid "Student Number"
+msgstr "شماره دانشجویی"
+
+msgid "First name"
+msgstr "نام"
+
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+msgid "Phone number"
+msgstr "شماره تماس"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Retype password"
+msgstr "تکرار کلمه عبور"
+
+msgid "Register"
+msgstr "ثبت نام"
+
+msgid "Reset Password"
+msgstr "بازنشانی کلمه عبور"
+
+msgid "Username Recovery"
+msgstr "بازیابی شناسه کاربری"
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Your request sent. Your account will be activated after confirmation."
+msgstr "درخواست شما ارسال شد. پس از تایید درخواست، حساب کاربری شما فعال خواهد شد."
+
+msgid "Your account is deactivated. Contact Administrator"
+msgstr "حساب کاربری شما غیر فعال است. با مدیریت تماس بگیرید"
+
+msgid "Dashboard"
+msgstr "صفحه من"
+
+msgid "Notifications"
+msgstr "پیام ها"
+

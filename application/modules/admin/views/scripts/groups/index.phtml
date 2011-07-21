@@ -1,0 +1,53 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Manage user groups';
+$config['addMessage'] = 'Add new user group'; 
+$config['emptyMessage'] = 'There is not user editable groups registered at this time.';
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Group',
+    'Parent group',
+);
+$config['columnIndexes'] = array(
+    'name',
+    'parent_name'
+);
+
+// additional actions
+$config['additionalActions'] = array(
+    'permissions'    =>  array(
+        'action'        => 'flippers',
+        'title'         => 'Edit permissions',
+        'link_class'    => 'ico',
+        'img_alt'       => 'permissions',
+        'img_url'       => '/images/led-ico/user.png',
+        'parameter'     => true,
+    ),
+);
+
+// configure the permissions
+$config['linkOrder'] = array('edit', 'delete', 'permissions');
+/*$config['linkRouter'] = array(
+							'name' => 'language',
+							'defaultParams' => array('lang'=>Zend_Controller_Front::getInstance()->getRequest()->getParam('lang'))
+						);
+	*/					
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

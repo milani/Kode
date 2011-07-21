@@ -1,0 +1,82 @@
+<?php
+/**
+ * Displays all the registered users
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_users
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+// messages
+$config['pageTitle'] = 'Manage Students';
+$config['addMessage'] = 'Add new student';
+$config['showAddButton'] = false;
+
+if(isset($this->classId)){
+    $config['linkRouter'] = array(
+        'defaultParams'	=> array('classid'=>$this->classId)
+    );
+}
+
+$config['additionalToolbarActions'] = array(
+    'add' => array(
+        'action' => 'addstudent',
+        'controller' => 'users',
+		'title' => 'Add new student',
+    )
+);
+$config['emptyMessage'] = 'We don\'t have any student registered at this time.';
+// column names & indexes
+$config['columnNames'] = array(
+    'Student Number', 'First name', 'Last name', 'Class Name','Email', 'Active'
+);
+$config['columnIndexes'] = array(
+    'username', 'firstname', 'lastname', 'class_name','email', 'active'
+);
+
+$config['viewLinkColumn'] = 'username';
+
+$config['columnDataTypes'] = array(
+    'active' => 'boolean'
+);
+$config['nullPlaceholders'] = array(
+    'active' => '<img src="'.$this->baseUrl().'/images/led-ico/cross.png" />'
+);
+
+
+
+$config['additionalActions'] = array(
+    'active'  		=>	array(
+    	'action'		=> 'toggleactivestudent',
+    	'title'			=> 'Toggle Active',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/lightbulb.png',
+        'img_alt'		=> 'Toggle Active'
+    ),
+    'editstudent'          =>  array(
+        'action'		=> 'editstudent',
+    	'title'			=> 'Edit',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/pencil.png',
+        'img_alt'		=> 'Edit'
+    ),
+    'deletestudent'		=> array(
+        'action'		=> 'deletestudent',
+    	'title'			=> 'Delete',
+    	'parameter'		=> TRUE,
+    	'icon'			=> TRUE,
+        'img_url'		=> '/images/led-ico/cross.png',
+        'img_alt'		=> 'Delete'
+    )
+);
+
+$config['linkOrder'] = array('active','editstudent','deletestudent');
+
+// render the default listing
+echo $this->partial('partials/default-listing.phtml', 
+array(
+    'config' => $config, 'paginator' => $this->paginator
+));

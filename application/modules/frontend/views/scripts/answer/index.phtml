@@ -1,0 +1,85 @@
+<?php
+/**
+ * Add a new user group in the application
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = 'Answer';
+echo $this->partial('partials/default-add-edit.phtml', 
+    array(
+        'form' => $this->form,
+    	'config' => $config,
+        'boxsize'	=> '75'
+    )
+);
+
+$config['pageTitle'] = 'Attachments';
+$config['emptyMessage'] = 'No Attachment.';
+$config['linkRouter'] = array(
+    'defaultParams'	=> array('assignmentid'=>$this->assignmentId,'problemid'=>$this->problemId)
+);
+// additional actions
+$config['additionalActions'] = array(
+    'downloadAttach' => array(
+        'action'		=> 'downloadattachment',
+        'controller'	=> 'answer',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/download.png',
+        'parameter'		=> true,
+        'parameter_index'=> 'submission_file_unique'
+    ),
+ 	'deleteAttach' => array(
+        'action'		=> 'deleteattachment',
+        'controller'	=> 'answer',
+        'title'			=> 'Delete',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Delete',
+        'img_url'		=> '/images/led-ico/cross.png',
+        'parameter'		=> true
+    ),
+);
+// column names & indexes
+$config['columnNames'] = array(
+    'Filename'
+);
+$config['columnIndexes'] = array(
+    'submission_file_name'
+);
+// configure the permissions
+$config['linkOrder'] = array('downloadAttach', 'deleteAttach');
+
+echo $this->partial('partials/attachment-listing.phtml', 
+    array(
+    	'config'        => $config,
+        'attachments'	=> $this->attachments,
+        'id'			=> $this->answerId,
+        'controllerName'=> 'answer'
+    )
+);
+?>
+<?php if(isset($this->answerId)):?>
+<div class="box box-25 altbox">
+	<div class="boxin">
+    	<div class="header">
+    		<h1><?php echo $this->t('Delete Answer');?></h1>
+    	</div>
+		<div class="content">
+			<form id="answer-delete" method="post" action="<?php echo $this->url(array('action'=>'delete','controller'=>'answer'));?>">
+				<dl>
+					<dt><?php echo $this->t('Do you want to delete answer?');?></dt>
+					<dd><input type="hidden" name="id" value="<?php echo $this->answerId;?>"/></dd>
+					<dd id="submit-element">
+						<input type="submit" name="submit" value="Delete Answer"/>
+					</dd>
+				</dl>
+			</form>
+		</div>
+	</div>
+</div>
+<?php endif;?>

@@ -1,0 +1,24 @@
+<?php
+/**
+ * Delete an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Delete problem "%s"', $this->item['problem_number']);
+$config['areYouSureMessage'] = sprintf(
+'Are you sure you want to delete problem "%s"?', $this->item['problem_number']);
+// column names & indexes
+$config['columnNames'] = array(
+    'Number', 'Description',
+);
+$config['columnIndexes'] = array(
+    'problem_number', 'problem_desc',
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

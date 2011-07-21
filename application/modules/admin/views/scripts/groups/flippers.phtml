@@ -1,0 +1,16 @@
+<?php
+/**
+ * Manages the permissions for the given group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Edit permissions for "%s" group', 
+$this->item['name']);
+echo $this->partial('partials/default-add-edit.phtml', 
+array(
+    'form' => $this->form, 'config' => $config
+));

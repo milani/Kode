@@ -1,0 +1,227 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: App\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-21 18:41+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Morteza Milani <alaki@dolaki.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: username\n"
+
+msgid "Manage Courses"
+msgstr "مدیریت دروس"
+
+msgid "Manage Classes"
+msgstr "مدیریت کلاس ها"
+
+msgid "Manage Assignments"
+msgstr "مدیریت تمرین ها"
+
+msgid "Add new class"
+msgstr "ایجاد کلاس"
+
+msgid "Add new course"
+msgstr "ایجاد درس"
+
+msgid "Course Name"
+msgstr "نام درس"
+
+msgid "Semester"
+msgstr "ترم"
+
+msgid "Year"
+msgstr "سال"
+
+msgid "The user was successfully updated"
+msgstr "حساب کاربری با موفقیت ویرایش شد"
+
+msgid "Back to classes"
+msgstr "بازگشت به کلاس ها"
+
+msgid "Add new assignment"
+msgstr "ایجاد تمرین"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Class Name"
+msgstr "نام کلاس"
+
+msgid "Start Date"
+msgstr "تاریخ شروع"
+
+msgid "Due Date"
+msgstr "مهلت تحویل"
+
+msgid "End Date"
+msgstr "آخرین تاریخ تحویل"
+
+msgid "Create Date"
+msgstr "تاریخ ایجاد"
+
+msgid "Add assignment for all classes"
+msgstr "ایجاد تمرین برای تمام کلاس ها"
+
+msgid "Numbering"
+msgstr "شماره گذاری"
+
+msgid "Continues"
+msgstr "ادامه از قبل"
+
+msgid "Start From 1"
+msgstr "شروع از ۱"
+
+msgid "Start date"
+msgstr "تاریخ شروع"
+
+msgid "Due date"
+msgstr "مهلت ارسال"
+
+msgid "End date"
+msgstr "آخرین مهلت ارسال"
+
+msgid "Create assignment"
+msgstr "ایجاد تمرین"
+
+msgid "Assignments"
+msgstr "تمرین ها"
+
+msgid "No assignment found."
+msgstr "تمرینی برای نمایش موجود نیست."
+
+msgid "New problem"
+msgstr "مسئله جدید"
+
+msgid "Number"
+msgstr "شماره"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Create problem"
+msgstr "ایجاد مسئله"
+
+msgid "Problems"
+msgstr "مسائل"
+
+msgid "Number of problems"
+msgstr "تعداد مسائل"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Back to assignments"
+msgstr "بازگشت به تمرین ها"
+
+msgid "Add new problem"
+msgstr "ایجاد مسئله"
+
+msgid "Manage Problems"
+msgstr "مدیریت مسائل"
+
+msgid "Submissions"
+msgstr "پاسخ ها"
+
+msgid "Marked Submissions"
+msgstr "پاسخ های تصحیح شده"
+
+msgid "No problem found."
+msgstr "مسئله ای برای نمایش موجود نیست."
+
+msgid "All classes include this assignment."
+msgstr "تمام کلاس ها شامل این سری تمرین می باشند."
+
+msgid "Changes should only effect this class"
+msgstr "تغییرات منحصر به این کلاس باشد"
+
+msgid "This Assignment is only available in this class."
+msgstr "این سری تمرین تنها در همین کلاس استفاده شده است."
+
+msgid "View Submissions"
+msgstr "نمایش پاسخ ها"
+
+msgid "Back to problems"
+msgstr "بازگشت به مسائل"
+
+msgid "Submit Date"
+msgstr "تاریخ ارسال"
+
+msgid "Grade"
+msgstr "نمره"
+
+msgid "Grade Submission"
+msgstr "تصحیح پاسخ"
+
+msgid "Import grades from file"
+msgstr "وارد کردن نمرات از فایل"
+
+msgid "Download All"
+msgstr "دانلود همه"
+
+msgid "No grade"
+msgstr "فاقد نمره"
+
+msgid "Download"
+msgstr "دانلود"
+
+msgid "Submission"
+msgstr "پاسخ"
+
+msgid "Class"
+msgstr "کلاس"
+
+msgid "Assign Assistants"
+msgstr "تخصیص دستیار"
+
+msgid "Assign"
+msgstr "تخصیص"
+
+msgid "Problem"
+msgstr "صورت مسئله"
+
+msgid "No submission yet"
+msgstr "هنوز پاسخی ارسال نشده است"
+
+msgid "Batch Grade"
+msgstr "نمره از فایل"
+
+msgid "Grade File"
+msgstr "فایل نمره"
+
+msgid "Process"
+msgstr "پردازش"
+
+msgid "No Attachment."
+msgstr "فاقد ضمیمه"
+
+msgid "Submit Answer"
+msgstr "ارسال پاسخ"
+
+msgid "Answer"
+msgstr "پاسخ"
+
+msgid "Download Archive"
+msgstr "دانلود فایل فشرده"
+
+msgid "Delete Answer"
+msgstr "حذف پاسخ"
+
+msgid "Do you want to delete answer?"
+msgstr "آیا می خواهید پاسخ را حذف نمایید؟"
+
+msgid "Answered Problems"
+msgstr "تمرین های پاسخ داده شده"
+
+msgid "Problem was successfully added."
+msgstr "مسئله با موفقیت ایجاد شد."
+
+msgid "The problem was successfully edited."
+msgstr "مسئله با موفقیت ویرایش شد."
+
+msgid "The problem was successfully deleted."
+msgstr "مسئله با موفقیت حذف شد."
+

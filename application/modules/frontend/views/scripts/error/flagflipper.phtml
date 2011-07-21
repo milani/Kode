@@ -1,0 +1,28 @@
+<?php
+/**
+ * Displays the Flag and Flipper error to the developer
+ *
+ * @category frontend
+ * @package frontend_views
+ * @subpackage frontend_views_error
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<h1>Flag and Flipper error</h1>
+<p>Hey there fellow developer :)</p>
+<p>You've requested action <strong><?php
+echo $this->originalAction;
+?></strong> in controller <strong><?php
+echo $this->originalController;
+?></strong>. Sadly I must inform you that this resource / privilege
+combination isn't registered in the database and I can't to a proper
+Flag and Flipper query on it. This is the reason you're seing this
+error.</p>
+<p>I suggest you use the command line tool - located at <strong>application/modules/admin/cli/tools/FlagFlipper.php</strong>
+- and generate the necessary SQL queries, run them and add them to the
+DB changes file.</p>
+<p>PS: don't panic, this happens only in dev. Staging / production users
+will get the 404 page. Don't feel left out, you can always <a
+	href="<?php
+echo $this->baseUrl();
+?>/error/404/" title="">click here</a> and experience the 404 page.</p>

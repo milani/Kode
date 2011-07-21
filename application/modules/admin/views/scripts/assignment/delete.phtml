@@ -1,0 +1,24 @@
+<?php
+/**
+ * Delete an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Delete assignment "%s"', $this->item['assignment_title']);
+$config['areYouSureMessage'] = sprintf(
+'Are you sure you want to delete assignment "%s"?', $this->item['assignment_title']);
+// column names & indexes
+$config['columnNames'] = array(
+    'Title', 'Class Name', 'Start Date','End Date'
+);
+$config['columnIndexes'] = array(
+    'assignment_title', 'class_name', 'assignment_start_at', 'assignment_end_at'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

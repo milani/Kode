@@ -5,20 +5,15 @@
  *
  * @category public
  * @package public
- * @copyright Weapi
+ * @copyright Copyright (c) 2011, Morteza Milani
  */
-
 // define the application path constant
 define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 define('ROOT_PATH', realpath(dirname(__FILE__) . '/..'));
-
 $paths = array(
-    realpath(dirname(__FILE__) . '/../library'),
-    get_include_path(),
+    realpath(dirname(__FILE__) . '/../library'), get_include_path()
 );
-
 set_include_path(implode(PATH_SEPARATOR, $paths));
-
 require APPLICATION_PATH . '/Bootstrap.php';
 $boostrap = new Bootstrap();
 $boostrap->runApp();

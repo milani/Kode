@@ -1,0 +1,38 @@
+<?php
+/**
+ * Holds the default paginator view
+ *
+ *
+ * @category admin
+ * @package admin_paginators
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<?php
+if ($this->pageCount) :
+?>
+<ul class="pagination">
+	<li><?php  if (isset($this->previous)) :?>
+		<a class="text"	href="<?php echo $this->url(array('page' => $this->previous));?>"> &rarr; <?php echo $this->t('Previous')?></a>
+		<?php else : ?>
+		<span class="disabled">	&rarr; <?php echo $this->t('Previous');?></span>
+        <?php endif;?>
+    </li>
+    <?php foreach ($this->pagesInRange as $page) :?>
+	<li>
+        <?php if ($page != $this->current) :?>
+		<a	href="<?php echo $this->url(array('page' => $page));?>"><?php echo $page;?></a>
+		<?php else : ?>
+		<span class="current"><?php echo $page;?></span>
+        <?php endif;?>
+	</li>
+	<?php endforeach;?>
+	<li><?php if (isset($this->next)) :?>
+			<a class="text" href="<?php echo $this->url(array('page' => $this->next));?>"><?php echo $this->t('Next');?> &larr;</a>
+	    <?php else : ?>
+			<span class="disabled"><?php echo $this->t('Next');?> &larr;</span>
+        <?php endif; ?>
+    </li>
+</ul>
+
+<?php endif;?>

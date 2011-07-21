@@ -1,0 +1,24 @@
+<?php
+/**
+ * Delete an user group
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+$config['pageTitle'] = sprintf('Delete class "%s"', $this->item['class_name']);
+$config['areYouSureMessage'] = sprintf(
+'Are you sure you want to delete class "%s"?', $this->item['class_name']);
+// column names & indexes
+$config['columnNames'] = array(
+    'Class Name', 'Course Name', 'Term','Year'
+);
+$config['columnIndexes'] = array(
+    'class_name', 'course_name', 'class_term', 'class_year'
+);
+echo $this->partial('partials/default-delete.phtml', 
+array(
+    'form' => $this->form, 'config' => $config, 'item' => $this->item
+));

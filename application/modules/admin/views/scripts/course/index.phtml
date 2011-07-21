@@ -1,0 +1,32 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Manage Courses';
+$config['addMessage'] = 'Add new course'; 
+$config['emptyMessage'] = 'No course defined in the system.';
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Course Name',
+);
+$config['columnIndexes'] = array(
+    'course_name',
+);
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

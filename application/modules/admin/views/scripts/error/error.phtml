@@ -1,0 +1,100 @@
+<?php
+/**
+ * Displays the 404 - Page not found error
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage admin_views_error
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+?>
+<style>
+body,table,div{
+	direction:ltr;
+}
+</style>
+<div id="errorpage" class="clearfix" style="direction:ltr;text-align:left;">
+<h1>Internal Server Error</h1>
+<p>Somewhere something went terribly wrong :( . Just have a look:</p>
+<ul>
+	<li><strong>...in file: </strong><em><?php echo $this->exception->getFile();?></em></li>
+	<li><strong>...on line: </strong><em><?php echo $this->exception->getLine();?></em></li>
+	<li><strong>...for error: </strong><em><?php echo $this->exception->getMessage();?></em></li>
+</ul>
+<p>It seems that it all originated there. Or maybe you can just have a
+look at the stack trace:</p>
+<h2>Stack trace</h2>
+<div class="errorHandling" >
+<table>
+	<tr>
+		<th>#</th>
+		<th>File</th>
+		<th>Class</th>
+		<th>Line</th>
+		<th>Function</th>
+		<th>Args</th>
+	</tr>
+    <?php
+    $index = 0;
+    ?>
+    <?php foreach ($this->exception->getTrace() as $traceItem) :?>
+    <?php $index ++;?>
+    <tr>
+		<td><?php echo $index;?></td>
+		<td>
+        <?php if (isset($traceItem['file'])) :?>
+        	<span title="<?php echo $traceItem['file'];?>">
+                <?php echo basename($traceItem['file']);?>
+            </span>
+        <?php else :?>
+        	-
+        <?php endif;?>
+        </td>
+		<td>
+        <?php if (isset($traceItem['class'])) :?>
+            <?php echo $this->displayClass($traceItem['class']);?>
+        <?php else :?>
+            -
+		<?php endif;?>
+        </td>
+		<td>
+	    <?php if (isset($traceItem['line'])) :?>
+            <?php echo $traceItem['line'];?>
+        <?php else :?>
+            -       
+        <?php endif;?>
+        </td>
+		<td>
+        <?php if (isset($traceItem['function'])) :?>
+        	<?php echo $this->displayMethod($traceItem['function'], @$traceItem['class']);?>
+        <?php else :?>
+        	-                    
+        <?php endif;?>
+        </td>
+		<td>
+        <?php if (isset($traceItem['args']) && ! empty($traceItem['args'])) :?>
+        	<ol>
+            <?php foreach ($traceItem['args'] as $arg) :?>
+				<li>
+                <?php if (is_array($arg)) :?>
+                    <?php echo $this->formatDump($arg);?>
+				<?php else :?>
+                    <?php if (is_object($arg)) :?>
+                        <?php echo $this->formatDump($arg);?>
+                    <?php else :?>
+                        <?php echo gettype($arg) . ' "<em>' . $arg . '</em>"';?>
+                    <?php endif;?>
+	            <?php endif;?>
+                </li>
+            <?php endforeach;?>
+			</ol>
+		<?php else :?>
+        	-
+        <?php endif;?>
+        </td>
+	</tr>
+    <?php endforeach;?>
+</table>
+</div>
+<p>Good luck in fixing it!</p>
+</div>

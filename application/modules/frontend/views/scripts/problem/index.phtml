@@ -1,0 +1,76 @@
+<?php
+/**
+ * Displays all the user groups
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Problems'; 
+$config['emptyMessage'] = 'No problem found.';
+$config['linkRouter'] = array(
+    'defaultParams'	=> array('assignmentid' => $this->assignmentId)
+);
+// additional actions
+$config['additionalActions'] = array(
+    'submissions' => array(
+        'action'		=> 'index',
+        'controller'	=> 'answer',
+        'title'			=> 'Submit Answer',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Submit Answer',
+        'img_url'		=> '/images/led-ico/page_white_edit.png',
+        'parameter'		=> true
+    ),
+    'download'	=> array(
+        'action'		=> 'download',
+        'controller'	=> 'problem',
+        'title'			=> 'Download',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Download',
+        'img_url'		=> '/images/led-ico/drive_disk.png',
+        'parameter'		=> true,
+    ),
+    'view'		=> array(
+        'action'		=> 'view',
+        'controller'	=> 'problem',
+        'title'			=> 'View',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'View',
+        'img_url'		=> '/images/led-ico/page_white_text.png',
+        'parameter'		=> true,
+    )
+);
+
+$config['additionalToolbarActions'] = array(
+    'back'	=> array(
+        'action'		=> 'index',
+        'controller'	=> 'assignment',
+        'title'			=> 'Back to assignments',
+    )
+);
+// column names & indexes
+$config['columnNames'] = array(
+    'Number',
+    'Description',
+);
+$config['columnIndexes'] = array(
+    'problem_number',
+    'problem_desc',
+);
+
+// configure the permissions
+$config['linkOrder'] = array('download','view','submissions');
+
+// render the default listing
+echo $this->partial(
+    'partials/default-listing.phtml',
+    array(
+        'config' => $config,
+        'paginator' => $this->paginator,
+    )
+);

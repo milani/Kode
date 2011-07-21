@@ -1,0 +1,66 @@
+<?php
+/**
+ * Layout used to display error pages
+ *
+ * @category admin
+ * @package admin_layouts
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+// configure the title
+$this->headTitle()->setSeparator(' - ')->enableTranslation();
+$this->headTitle('Kode');
+// add generic scripts
+$this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');
+// add generic CSS files
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+$this->headLink()->headLink(array('rel' => 'shortcut icon',
+                                  'href' => $this->baseUrl().'/favicon.ico',
+                                  'type' => 'image/x-icon'),
+                                  'PREPEND');
+//Add the ZFDebug Toolbar only if enabled in app.ini
+if( Zend_Registry::get('config')->zfdebug->enabled ){
+    $this->headScript()->appendFile($this->baseUrl() . '/js/zfdebug.js');
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/zfdebug.css');
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" /> 
+        
+        <?php
+        echo $this->headTitle() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headScript() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headLink() . PHP_EOL;
+        ?>
+        
+        <!--[if lte IE 7.0]>
+            <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen, projection, tv" />
+        <![endif]-->
+
+<script type="text/javascript" charset="utf-8"> 
+            //Set focus on username field
+            $(document).ready(function(){
+                $('input#username').focus();
+            });
+</script>
+
+</head>
+<body id="login">
+    <div class="box box-50 altbox">
+	    <div class="boxin">
+            <div class="header">
+            	<h1><?php echo $this->t($this->headTitle()->offsetGet(0));?></h1>
+            </div> 
+            <?php echo $this->layout()->content;?>
+		</div>
+    </div>
+</body>
+</html>

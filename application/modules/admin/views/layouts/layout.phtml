@@ -1,0 +1,114 @@
+<?php
+/**
+ * Default layout, used to render most parts of the application
+ *
+ * @category admin
+ * @package admin_layouts
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+// configure the title
+$this->headTitle()->setSeparator(' - ')->enableTranslation();
+$this->headTitle('Kode');
+// add generic scripts
+$this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/ddpng.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/hoverIntent.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/superfish.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/admin.js');
+// add generic CSS files
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/superfish.css');
+$this->headLink()->headLink(array('rel' => 'shortcut icon',
+                                  'href' => $this->baseUrl().'/favicon.ico',
+                                  'type' => 'image/x-icon'),
+                                  'PREPEND');
+//Add the ZFDebug Toolbar only if enabled in app.ini
+if( Zend_Registry::get('config')->zfdebug->enabled ){
+    $this->headScript()->appendFile($this->baseUrl() . '/js/zfdebug.js');
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/zfdebug.css');
+}
+$user = Zend_Auth::getInstance()->getIdentity();
+$bodyClass = Zend_Registry::get('controllerName') . Zend_Registry::get('actionName');
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" /> 
+        
+        <?php
+        echo $this->headTitle() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headScript() . PHP_EOL;
+        ?>
+        <?php
+        echo $this->headLink() . PHP_EOL;
+        ?>
+        <!--[if lte IE 7.0]>
+            <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen, projection, tv" />
+        <![endif]-->
+
+<!--[if IE 8.0]>
+            <style type="text/css">
+                form.fields fieldset {margin-top: -10px;}
+            </style>
+        <![endif]-->
+
+<!-- Adding support for transparent PNGs in IE6: -->
+<!--[if lte IE 6]>
+            <script type="text/javascript" src="<?php
+            echo $this->baseUrl();
+            ?>/js/ddpng.js"></script>
+            <script type="text/javascript">
+                DD_belatedPNG.fix('.ico img');
+                DD_belatedPNG.fix('.msg p');
+                DD_belatedPNG.fix('table.calendar thead th.month a img');
+                DD_belatedPNG.fix('table.calendar tbody img');
+            </script>
+        <![endif]-->
+</head>
+<body class="<?php echo $bodyClass;?>">
+<div id="header">
+	<div class="inner-container clearfix">
+		<h1 id="logo">
+			<a class="home" href="<?php echo $this->baseUrl();?>/" title="<?php echo $this->t('Go to admin\'s homepage')?>"> <?php echo $this->t('Administration');?> </a>
+		</h1>
+		<div id="userbox">
+			<div class="inner">
+				<strong>
+					<a class="user" href="<?php echo $this->baseUrl();?>/account/edit/">
+    					    <?php echo $user->firstname . ' ' . $user->lastname;?>
+                	</a>
+               	</strong>
+				<ul class="clearfix">
+					<li><a href="<?php echo $this->baseUrl();?>/account/change-password/"><?php echo $this->t('Change password')?></a></li>
+				</ul>
+			</div>
+			<a id="logout" href="<?php echo $this->baseUrl();?>/account/logout/"><?php echo $this->t('log out')?></a>
+		</div>
+		<!-- #userbox -->
+	</div>
+	<!-- .inner-container -->
+</div>
+<!-- #header -->
+
+<div id="container"> 
+    <?php echo $this->renderMenu();?>
+	<div class="outer-container">
+		<div class="inner-container"><!-- flash messenger - displays success / fail messages to the user -->
+            <?php echo $this->flashMessenger();?>
+            <!-- end of flashMessenger --> <!-- main content - the content of the view will be rendered here -->
+            <?php echo $this->layout()->content;?>
+            <!-- end of main content -->
+        </div>
+		<div id="footer"><!-- footer, maybe you don't need it -->
+			<p>Copyright © 2010 Copyright (c) 2011, Morteza Milani, All rights reserved.</p>
+		</div>
+	</div>
+	<!-- .inner-container -->
+</div>
+<!-- #container -->
+</body>
+</html>

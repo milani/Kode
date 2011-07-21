@@ -1,0 +1,45 @@
+<?php
+/**
+ * View for the default deleting UI
+ *
+ * @category admin
+ * @package admin_views
+ * @subpackage partials
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$helper = $this->listingUtilities($this->config);
+?>
+<div class="box altbox">
+<div class="boxin">
+<div class="header">
+<h1><?php
+$helper->pageTitle();
+?></h1>
+</div>
+<div class="finalaction">
+<h2><?php
+$helper->areYouSureMessage();
+?></h2>
+<table>
+                <?php
+                foreach( $helper->getColumnNamesAndValues($this->item) as $columnName => $columnValue ):
+                    ?>  
+                    <tr>
+		<th><?php
+                    $helper->displayItem($columnName);
+                    ?>:</th>
+		<td><strong><?php
+                    $helper->displayItem($columnValue);
+                    ?></strong></td>
+	</tr>
+                <?php
+                endforeach
+                ;
+                ?>
+            </table>
+            <?php
+            echo $this->form;
+            ?>
+        </div>
+</div>
+</div>

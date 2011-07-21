@@ -1,0 +1,45 @@
+<?php
+/**
+ * Displays all the flippers
+ *
+ * @package admin_views
+ * @subpackage admin_views_groups
+ * @copyright Copyright (c) 2011, Morteza Milani
+ */
+$config = array();
+// messages
+$config['pageTitle'] = 'Manage flags';
+$config['showAddButton'] = TRUE;
+$config['addMessage'] = 'Update flags and flippers';
+$config['emptyMessage'] = 'No flags registered at this time.';
+// column names & indexes
+$config['columnNames'] = array(
+    'Name', 'Description', 'Active on Production', 'Active on Development'
+);
+$config['columnIndexes'] = array(
+    'name', 'description', 'active_on_prod', 'active_on_dev'
+);
+$config['columnDataTypes'] = array(
+    'active_on_prod' => 'boolean', 'active_on_dev' => 'boolean'
+);
+// additional actions
+$config['additionalActions'] = array(
+    
+'toogle_dev' => array(
+    'action' => 'toogleDev', 'title' => 'Toogle dev', 'parameter' => TRUE, 
+'icon' => FALSE
+), 
+'toogle_prod' => array(
+    'action' => 'toogleProd', 'title' => 'Toogle prod', 
+'parameter' => TRUE, 'icon' => FALSE
+)
+);
+// configure the permissions
+$config['linkOrder'] = array(
+    'toogle_prod', 'toogle_dev'
+);
+// render the default listing
+echo $this->partial('partials/default-listing.phtml', 
+array(
+    'config' => $config, 'paginator' => $this->paginator
+));
