@@ -6,13 +6,19 @@
  * @package admin_layouts
  * @copyright Copyright (c) 2011, Morteza Milani
  */
+// retrieve layout orientation
+$orientation = Zend_Registry::get('App_Layout_Orientation');
 // configure the title
 $this->headTitle()->setSeparator(' - ');
 $this->headTitle('Copyright (c) 2011, Morteza Milani');
 // add generic scripts
 $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');
 // add custom CSS
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+if($orientation === 'ltr'){
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+}else{
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin-rtl.css');
+}
 $this->headLink()->headLink(array('rel' => 'shortcut icon',
                                   'href' => $this->baseUrl().'/favicon.ico',
                                   'type' => 'image/x-icon'),
@@ -64,7 +70,7 @@ echo $this->baseUrl();
                     ?>
                 </div>
 <div id="footer"><!-- footer, maybe you don't need it -->
-<p>Copyright © 2010 Copyright (c) 2011, Morteza Milani, All rights reserved.</p>
+<p>Copyright © 2011, Morteza Milani, All rights reserved.</p>
 </div>
 </div>
 <!-- .inner-container --></div>

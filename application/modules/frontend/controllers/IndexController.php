@@ -30,7 +30,6 @@ class IndexController extends App_Frontend_Controller {
         $this->title = 'Dashboard';
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
-        
         if($identity === NULL || $identity->username === 'guests')
             $this->_redirect('/account/login');
             

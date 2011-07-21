@@ -285,9 +285,11 @@ class Bootstrap extends App_Bootstrap_Abstract {
      */
     protected function _initLayout(){
 
-        Zend_Layout::startMvc(
-        APPLICATION_PATH . '/modules/' . CURRENT_MODULE . '/views/layouts/');
+        Zend_Layout::startMvc(APPLICATION_PATH . '/modules/' . CURRENT_MODULE . '/views/layouts/');
         $view = Zend_Layout::getMvcInstance()->getView();
+        $localeLayout = Zend_Locale::getTranslationList('layout');
+        $orientation = ($localeLayout['characters'] === 'right-to-left')?'rtl':'ltr';
+        Zend_Registry::set('App_Layout_Orientation',$orientation);
     }
 
     /**

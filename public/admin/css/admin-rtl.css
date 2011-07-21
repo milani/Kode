@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Yekan';
+    src: url('../font/yekan.eot');
+    src: url('../font/yekan.eot?iefix') format('eot'),
+         url('../font/yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 /* common - based on Eric Meyer's reset, you shouldn't change this section --------------------------------------------------------- */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -15,12 +23,13 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-style: inherit;
     font-size: 100%;
     font-family: inherit;
+    direction:rtl;
 }
 
 /* base --------------------------------------------------------- */
 body {
     background: #ddd;
-    font: 75%/1.5 "myriad pro", helvetica, arial, sans-serif;
+    font: 75%/1.5 yekan,tahoma,sans-serif;
     color: #333;
 }
 table {
@@ -28,7 +37,7 @@ table {
     border-spacing: 0;
 }
 caption, th, td {
-    text-align: left;
+    text-align: right;
     font-weight: normal;
 }
 blockquote:before, blockquote:after,
@@ -188,7 +197,7 @@ border-right: 0 !important;
 #header #logo {
     position: absolute;
     top:10px;
-    left:0;
+    right:10px;
 }
 #header #logo a.home {
     border: 0;
@@ -206,8 +215,8 @@ border-right: 0 !important;
 #header #userbox {
     background: #0c6eb5 url("../images/userbox.png") 10px 15px no-repeat;
     position: relative;
-    float: right;
-    line-height: 1.3;
+    float: left;
+    line-height: 1.5;
     box-shadow:0 1px 0 #1c9cf0;
     -moz-box-shadow:0 1px 0 #1c9cf0;
     -webkit-box-shadow:0 1px 0 #1c9cf0;
@@ -222,7 +231,7 @@ border-right: 0 !important;
     -khtml-border-bottom-left-radius:5px;
 }
 #header #userbox .inner {
-    padding: 10px 80px 10px 50px;
+    padding: 10px 60px 10px 60px;
 }
 #header #userbox strong a {
     color: #fff;
@@ -271,18 +280,18 @@ border-right: 0 !important;
 ul#nav {
     position:absolute;
     top:-32px;
-    left:282px;
-    margin-left: 1%;
+    right:160px;
+    margin-right: 1%;
     z-index:9999;
 }
 ul#nav li {
-    float:left;
+    float:right;
 }
 ul#nav a {
     border: 0;
     display: block;
     color:#fff;
-    margin-right:10px;
+    margin-left:10px;
     font-size:14px;
     padding:6px 15px 5px;
     border-top-left-radius:5px;
@@ -631,13 +640,13 @@ form {
     padding: 1.8em;
 }
 legend{
-    font-size: 150%;
+    font-size: 120%;
     font-weight: bold;
     border-bottom: 4px solid #999;
     display: block;
     width: 50%;
     margin-bottom: 1em;
-    margin-top:1em;
+	margin-top:1em;
 }
 form dt{
     line-height: 1em;
@@ -657,6 +666,7 @@ textarea {
     padding: 5px 4px;  
     width: 240px;
     font-size: 13px;
+    margin-top:4px;
 }
 
 select{
@@ -683,6 +693,7 @@ input[type='submit'],button[type='submit'] {
     border: 1px solid #00487a;
     background: #0567ad url("../images/button.gif") repeat-x;
     text-shadow: #00487a 1px 1px 0;
+    font-family:yekan,inherit;
 }
 input[type='submit']:hover,button[type='submit']:hover {
     border-color: #272727;
@@ -716,7 +727,7 @@ dd.checkboxGroup br{
     margin-bottom: 5px;    
 }
 dd.radiocheck{
-	float:left;
+	float:right;
 }
 dt.radiocheck{
 	line-height:25px;
@@ -731,12 +742,12 @@ div.finalaction td{
     font-size: 120%;
 }
 div.finalaction th{
-    padding-right: 1em;
+    padding-left: 1em;
 }
 div.finalaction table{
     padding: 1em;
-    border-left: 5px solid #ccc;
-    margin: 0 0 1em 2em;
+    border-right: 5px solid #ccc;
+    margin: 0 2em 1em 0;
 }
 div.finalaction form{
     padding:0 1.8em 1.8em;
@@ -744,7 +755,7 @@ div.finalaction form{
 }
 div.finalaction p.back{
     padding:0 1.8em 1.8em;
-    margin-left: 2px;
+    margin-right: 2px;
     font-size: 110%;
 }
 
@@ -865,7 +876,7 @@ margin-right: 5px;
 
 /* content boxes */
 .box {
-float: left;
+float: right;
 width: 99%;
 margin: 0 1% 20px 0;
 }
@@ -910,7 +921,7 @@ border-radius: 5px 5px 0 0;
 -webkit-border-top-right-radius: 5px;
 position: relative;
 margin: -1px -1px 0 -1px;
-padding: 7px 0 9px 20px;
+padding: 7px 20px 9px 0;
 }
 .altbox .header {
 border-top-color: #0a81d0;
@@ -920,7 +931,7 @@ background: #0f518e url("../images/altheaderbox.png") repeat-x;
 position: relative;
 top: 2px;
 display: inline;
-font-size: 150%;
+font-size: 200%;
 color: #fff;
 text-shadow: #151515 0 1px 0;
 }
@@ -928,7 +939,7 @@ text-shadow: #151515 0 1px 0;
 text-shadow: #003d68 0 1px 0;
 }
 .box .header .button {
-margin-left: 15px;
+margin-right: 15px;
 }
     /* tags in the header */
 .box .header ul {
@@ -981,7 +992,7 @@ color: #0f518e;
     padding: 10px 10px 8px 10px;
 }
 .box .content table th {
-    text-align: left;
+    text-align: right;
     font-weight: normal;
 }
 .box .content table tr.even th,
@@ -994,7 +1005,7 @@ color: #0f518e;
 }
 .box .content table th.first,
 .box .content table td.first {
-    padding-left: 20px;
+    padding-right: 20px;
 }
 .box .content table thead th,
 .box .content table thead td {
@@ -1067,20 +1078,19 @@ color: #0f518e;
     margin: 0 auto;
 }
 #login .boxin {
-    box-shadow: #333 0 0 10px;
-    -webkit-box-shadow: #333 0 0 10px;
-    -moz-box-shadow: #333 0 0 10px;
-    -khtml-box-shadow: #333 0 0 10px;
+    box-shadow: #000 0 0 10px;
+    -webkit-box-shadow: #000 0 0 10px;
+    -moz-box-shadow: #000 0 0 10px;
+    -khtml-box-shadow: #000 0 0 10px;
     border: 0;
 }
 #login .box-50 {
     width: 470px;
 }
 #login .header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 5px;
     margin: 0;
-    font-weight:bold;    
 }
 #login .inner-form {
     padding: 18px 10px 0;
@@ -1116,7 +1126,7 @@ color: #0f518e;
 }
 #login dt,
 #login dd {
-    float: left;
+    float: right;
 }
 #login input[type='text'],
 #login input[type='password'] {
@@ -1125,7 +1135,7 @@ color: #0f518e;
     font-size: 110%;
 }
 #login dd#submit-element {
-    text-align: right;
+    text-align: left;
     float: none;
     width: auto;
     clear: both;
@@ -1134,7 +1144,7 @@ color: #0f518e;
     font-size:110%;
 }
 #login dd.links{
-	text-align:right;
+	text-align:left;
 	float:none;
 	width:auto;
 	clear:both;

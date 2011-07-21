@@ -6,13 +6,19 @@
  * @package admin_layouts
  * @copyright Copyright (c) 2011, Morteza Milani
  */
+// retrieve layout orientation
+$orientation = Zend_Registry::get('App_Layout_Orientation');
 // configure the title
 $this->headTitle()->setSeparator(' - ')->enableTranslation();
 $this->headTitle('Kode');
 // add generic scripts
 $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');
 // add generic CSS files
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+if($orientation === 'ltr'){
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+}else{
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin-rtl.css');
+}
 $this->headLink()->headLink(array('rel' => 'shortcut icon',
                                   'href' => $this->baseUrl().'/favicon.ico',
                                   'type' => 'image/x-icon'),

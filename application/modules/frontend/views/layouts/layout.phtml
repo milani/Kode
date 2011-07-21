@@ -6,6 +6,8 @@
  * @package admin_layouts
  * @copyright Copyright (c) 2011, Morteza Milani
  */
+// retrieve layout orientation
+$orientation = Zend_Registry::get('App_Layout_Orientation');
 // configure the title
 $this->headTitle()->setSeparator(' - ')->enableTranslation();
 $this->headTitle('Kode');
@@ -16,8 +18,16 @@ $this->headScript()->appendFile($this->baseUrl() . '/js/hoverIntent.js');
 $this->headScript()->appendFile($this->baseUrl() . '/js/superfish.js');
 $this->headScript()->appendFile($this->baseUrl() . '/js/admin.js');
 // add generic CSS files
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
-$this->headLink()->appendStylesheet($this->baseUrl() . '/css/superfish.css');
+if($orientation === 'ltr'){
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin.css');
+}else{
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/admin-rtl.css');
+}
+if($orientation === 'ltr'){
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/superfish.css');
+}else{
+    $this->headLink()->appendStylesheet($this->baseUrl() . '/css/superfish-rtl.css');
+}
 $this->headLink()->headLink(array('rel' => 'shortcut icon',
                                   'href' => $this->baseUrl().'/favicon.ico',
                                   'type' => 'image/x-icon'),
@@ -107,7 +117,7 @@ $bodyClass = Zend_Registry::get('controllerName') . Zend_Registry::get('actionNa
             <!-- end of main content -->
         </div>
 		<div id="footer"><!-- footer, maybe you don't need it -->
-			<p>Copyright © 2010 Copyright (c) 2011, Morteza Milani, All rights reserved.</p>
+			<p>Copyright © 2011, Morteza Milani, All rights reserved.</p>
 		</div>
 	</div>
 	<!-- .inner-container -->
