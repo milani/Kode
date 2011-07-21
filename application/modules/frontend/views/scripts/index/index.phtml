@@ -8,20 +8,78 @@
  * @subpackage frontend_views_index
  * @copyright Copyright (c) 2011, Morteza Milani
  */
+
+$config = array();
+
+// messages
+$config['pageTitle'] = 'Notifications'; 
+$config['emptyMessage'] = 'You have no notification.';
+
+// additional actions
+$config['additionalActions'] = array(
+    'markread' => array(
+        'action'		=> 'markasread',
+        'title'			=> 'Mark as read',
+        'link_class'	=> 'ico',
+        'img_alt'		=> 'Mark as read',
+        'img_url'		=> '/images/led-ico/accept.png',
+        'parameter'		=> true
+    )
+);
+
+// column names & indexes
+$config['columnNames'] = array(
+    'Notification',
+    'Date',
+    'Unread'
+);
+$config['columnIndexes'] = array(
+    'notification',
+    'created_at',
+    'unread'
+);
+
+// configure the permissions
+$config['linkOrder'] = array('markread');
+
+$helper = $this->listingUtilities($config);
 ?>
 <div class="box box-75 altbox">
-<div class="boxin">
-<div class="header">
-<h1><?php echo $this->t('Notifications');?></h1>
-</div>
-<div class="content">
-<ul class="notifications">
-
-</ul>
-</div>
- 
-<div class="clearfix"></div>
-</div>
+	<div class="boxin">
+		<div class="header">
+			<h1><?php echo $this->t('Notifications');?></h1>
+		</div>
+		<div class="content">
+		<table>
+		<tbody>
+		<?php if (!empty($this->paginate)) :?>
+            <?php foreach ($this->paginate as $item) :?>
+            	<tr <?php if( (boolean) $item['unread'] == false){echo 'class="notification-read"';}?>>
+                	<td width="70%">
+                        <?php $helper->displayItem($item, 'notification');?>
+                    </td>
+                    <td width="20%">
+                    	<?php $helper->displayItem($item, 'created_at');?>
+                    </td>
+                    <td width="10%" class="tc">
+                    	<?php if( (boolean) $item['unread'] == true):?>
+                        <?php echo $helper->links($item);?>
+                        <?php endif;?>
+                    </td>
+				</tr>
+            <?php endforeach;?>
+        <?php else : ?>
+			<tr>
+				<td colspan="<?php $helper->columnCount();?>" class="emptyMessage">
+                    <?php $helper->emptyMessage();?>
+                </td>
+			</tr>            
+       <?php endif;?>
+		</tbody>
+		</table>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 </div>
 
 <div class="box box-25 altbox">

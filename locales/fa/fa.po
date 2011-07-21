@@ -139,3 +139,6 @@ msgstr "صفحه من"
 msgid "Notifications"
 msgstr "پیام ها"
 
+msgid "You have no notification."
+msgstr "پیامی برای شما وجود ندارد."
+

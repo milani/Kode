@@ -581,7 +581,8 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
             }
         }else{
             $time = @strtotime($item);
-            if( App_Date::isDate($item)){
+            
+            if( App_Date::isDate($item,'Y-m-d H:i:s')){
                 $result = $this->view->formatDate($item);
             }else 
                 if( isset($this->_columnDataTypes[$index]) && $this->_columnDataTypes[$index] == 'boolean' ){

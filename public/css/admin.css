@@ -156,7 +156,9 @@ a img {
 .tcheckbox {
     width: 20px;
 }
-
+tr.notification-read{
+    color: #999;
+}
 /* for buttons etc. */
 .hand {
 cursor: hand;
@@ -706,6 +708,7 @@ td.actions-selected input[type='submit'] {
     padding-bottom: 3px;
     margin-left: 5px;
 }
+
 /* or span*/
 form span.or {
     padding: 0 .5em;

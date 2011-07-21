@@ -41,12 +41,39 @@ class Notification extends App_Model {
      */
     protected $_displayColumn = 'notification';
     
+    /**
+     * Alias of findByUser
+     * 
+     * @see Notification::findByUser()
+     */
+    public function retrieveNotifications($userId, $page, $paginate = NULL ){
+        $rows = $this->findByUser($userId, $page,$paginate);
+        //$this->markAsReadUnreads($userId);
+        return $rows;
+    }
+    
+    /**
+     * Finds notifications for a user
+     * 
+     * @param int $userId
+     * @param int $page
+     * @param boolean $paginate (Optional)
+     * @return Zend_Paginator|array
+     */
     public function findByUser($userId, $page, $paginate = NULL){
         $select = $this->_getSelect();
         $select->where('un.user_id = ?',$userId);
         return $this->_paginate($select, $page, $paginate);
     }
     
+    /**
+     * Adds notification to all users in a class
+     * and informs them via email
+     *
+     * @param string $notification
+     * @param int $classId
+     * @return int new notification id
+     */
     public function addBatchNotification($notification,$classId){
         $data = array(
             'notification' => $notification
@@ -71,7 +98,14 @@ class Notification extends App_Model {
         
         return $id;
     }
-    
+    /**
+     * Adds a notification for user
+     * and informs him about it via Email
+     * 
+     * @param string $notification
+     * @param int $userId
+     * @return int new notification id
+     */
     public function addNotification($notification,$userId){
         $data = array(
             'notification' => $notification
@@ -98,47 +132,23 @@ class Notification extends App_Model {
         return $id;
     }
     
-    public function markAsRead($userId){
-        $where = 'user_id = '.$this->_db->quote($userId).' AND notification_id = '.$this->_db->quote($notificationId);
-        return $this->_db->update('users_notifications', array('unread'=>'0'), Where);
-    }
     /**
-     * Overrides delete() in App_Model.
-     *
-     * When a group is deleted, all its children are linked
-     * to its parent
+     * Marks a notification as read.
      * 
-     * @param mixed $where 
-     * @access public
-     * @return int
+     * @param int $userId
+     * @param int $notificationId
+     * @return int number of affected rows
      */
-    public function delete($where){
-
-        $this->_setupPrimaryKey();
-        $primary = (array) $this->_primary;
-        $pkIdentity = $primary[(int) $this->_identity];
-        if( is_numeric($where) ){
-            $where = $pkIdentity . ' = ' . $where;
-        }
-        $select = new Zend_Db_Select($this->_db);
-        $select->from($this->_name);
-        $select->where($where);
-        $rows = $this->_db->fetchAll($select);
-        $userGroupModel = new AdminUserGroup();
-        foreach( $rows as $row ){
-            $children = $this->findByParentId($row['id']);
-            foreach( $children as $child ){
-                $this->update(
-                array(
-                    'parent_id' => $row['parent_id']
-                ), $this->_db->quoteInto('id = ?', $child['id']));
-                $userGroupModel->routeUsersToGroup($row['id'], 
-                $row['parent_id']);
-            }
-        }
-        return parent::delete($where);
+    public function markAsRead($userId,$notificationId){
+        $where = 'user_id = '.$this->_db->quote($userId).' AND notification_id = '.$this->_db->quote($notificationId);
+        return $this->_db->update('users_notifications', array('unread'=>'0'), $where);
     }
-
+    
+    /**
+     * Overwrites App_Model::_select() to add join tables
+     * 
+     * @see App_Model::_select()
+     */
     protected function _select(){
 
         $select = new Zend_Db_Select($this->_db);
@@ -153,9 +163,9 @@ class Notification extends App_Model {
             ),
             'un.notification_id = n.id'
         );
-        $select->order('created_at DESC');
+        $select->order(array('un.unread DESC','n.created_at DESC'));
         $select->reset(Zend_Db_Table::COLUMNS);
-        $select->columns('n.*,un.user_id,un.unread');
+        $select->columns(array('n.*','un.user_id','un.unread'));
         return $select;
     }
 }

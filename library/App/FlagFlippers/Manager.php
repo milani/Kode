@@ -103,7 +103,8 @@ class App_FlagFlippers_Manager {
     private static function _getFromMemcache(){
 
         $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
-        if( $acl = $cacheHandler->load(App_FlagFlippers_Manager::$indexKey) ){
+        $acl = $cacheHandler->load(App_FlagFlippers_Manager::$indexKey);
+        if( $acl ){
             return $acl;
         }
         return FALSE;
