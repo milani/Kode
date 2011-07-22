@@ -31,7 +31,7 @@ class AssignmentController extends App_Frontend_Controller {
        $identity = Zend_Auth::getInstance()->getIdentity();
        $classId = $identity->class_id;
        $assignmentModel = new Assignment();
-       $this->view->paginator = $assignmentModel->findByClass($classId,$this->_getPage());
+       $this->view->paginator = $assignmentModel->retrieveAssignments($classId,$this->_getPage());
     }
 
     public function printAction(){
@@ -52,7 +52,6 @@ class AssignmentController extends App_Frontend_Controller {
         
         $this->view->layout()->disableLayout();
 	    //$this->_helper->viewRenderer->setNoRender(true);
-        
     }
     
     public function downloadAction(){

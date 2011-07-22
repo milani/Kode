@@ -113,6 +113,31 @@ class Assignment extends App_Model {
         return $this->_paginate($select, $page, $paginate);
     }
     
+    public function retrieveAssignments($classId,$page = 1, $paginate = NULL){
+        
+        $today = App_Date::now();
+        
+        $select = $this->_getSelect();
+        $select->joinLeft(
+            array(
+                'p' => 'problems_view'
+            ), 'p.assignment_id = a.id AND p.class_id = c.class_id'
+        );
+        $select->reset(Zend_Db_Table::COLUMNS);
+        $select->columns(
+            array(
+            	'a.*', 'c.*','COUNT(p.id) AS problem_count','CONCAT(ca.class_name," - ",co.course_name) AS class_name'
+            )
+        );
+        $select->group(
+        	array('p.assignment_id','a.id')
+        );
+        $select->where('c.class_id = ?',$classId);
+        $select->where('c.assignment_start_at < ?',$today->toString('Y-M-d H:m:s'));
+
+        return $this->_paginate($select, $page, $paginate);
+    }
+    
     public function findByIdClass($id,$classId){
         $select = $this->_getSelect(false);
         $select->where('a.id = ?',$id);
