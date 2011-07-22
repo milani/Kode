@@ -124,7 +124,15 @@ class Submission extends App_Model {
         return $this->_paginate($this->_prepareContent($select), $page, $paginate);
         
     }
-    //assignmentId is added for security reasons
+    
+    /**
+     * Checks if the End date of assignment is passed or not.
+     * 
+     * @param int $problemId
+     * @param int $classId
+     * @param int $assignmentId This argument is not necessary, but added for security reasons.
+     * @return boolean
+     */
     public function canAnswer($problemId,$classId,$assignmentId){
         $select = new Zend_Db_Select($this->_db);
         $select->from(
@@ -164,18 +172,67 @@ class Submission extends App_Model {
         return false;
     }
     
+    /**
+     * Checks to see if user can delete a submission.
+     * User may not delete a submission if:
+     * <ul>
+     * <li>It is not his/her submission</li>
+     * <li>End date of assignment has passed</li>
+     * 
+     * @param int $submissionId
+     * @param int $classId
+     * @param int $userId
+     * @return boolean
+     */
+    public function canDelete($submissionId,$classId,$userId){
+        $select = new Zend_Db_Select($this->_db);
+        $select->from(
+            array(
+                's'	=> 'submissions'
+            )
+        );
+        $select->join(
+            array(
+                'p'	=> 'problems'
+            ),
+            'p.id = s.problem_id'
+        );
+        $select->join(
+            array(
+                'a'	=> 'assignments'
+            ),
+            'p.assignment_id = a.id'
+        );
+        $select->join(
+            array(
+                'ca'	=> 'assignment_class'            
+            ),
+            'ca.assignment_id = a.id'
+        );
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->columns(
+            array('ca.assignment_end_at')
+        );
+        $select->where('s.id = ?',$submissionId);
+        $select->where('s.user_id = ?',$userId);
+        $select->where('ca.class_id = ?',$classId);
+        
+        $row = $this->_db->fetchRow($select);
+        if($row == null){
+            return false;
+        }
+        
+        $date = new App_Date($row['assignment_end_at']);
+        if($date->isLater(time())){
+            return true;
+        }
+        return false;
+    }
+    
     public function deleteById($id){
         $attachModel = new SubmissionAttachment();
         $attachModel->delete('submission_id = '.$id);
         return $this->delete('id = '.$id);
-    }
-    
-    public function deleteByIdUser($submissionId,$userId){
-        $submissionId = $this->_db->quote($submissionId,Zend_Db::INT_TYPE);
-        $userId = $this->_db->quote($userId,Zend_Db::INT_TYPE);
-        $attachModel = new SubmissionAttachment();
-        $attachModel->delete('submission_id = '.$submissionId);
-        return $this->delete(' id = ' . $submissionId . ' AND user_id = '.$userId);
     }
     
     public function batchGrade($fileName,$userId){

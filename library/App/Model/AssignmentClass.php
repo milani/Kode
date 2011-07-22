@@ -69,11 +69,6 @@ class AssignmentClass extends App_Model {
             }
             $data['class_id'] = $classId;
             $this->insert($data);
-            
-            $notificationModel = new Notification();
-            
-            $notification = 'New Assignment Created.';
-            $notificationModel->addBatchNotification($notification,$classId);
         }
     }
     

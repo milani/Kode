@@ -31,7 +31,7 @@ class AnswerController extends App_Frontend_Controller {
 
         $this->title = 'Answer problem';
         
-        $assignmentId = $this->_requireParam('assignmentid',App_Controller::NUMERIC_T);
+        $assignmentId = $this->_requireParam('assignmentid',App_Controller::NUMERIC_T,'/assignment');
         $returnUrl = $this->_helper->url('index','problem','frontend',array('assignmentid'=>$assignmentId));
         
         $id = $this->_requireParam('id', App_Controller::NUMERIC_T,$returnUrl);
@@ -88,8 +88,7 @@ class AnswerController extends App_Frontend_Controller {
     public function deleteAction(){
         $this->title = 'Delete answer';
         
-        $assignmentId = $this->_requireParam('assignmentid', App_Controller::NUMERIC_T);
-
+        $assignmentId = $this->_requireParam('assignmentid', App_Controller::NUMERIC_T, '/assignment');
         $returnUrl = $this->_helper->url('index','problem','frontend',array('assignmentid'=>$assignmentId));
         
         $submissionModel = new Submission();
@@ -97,7 +96,18 @@ class AnswerController extends App_Frontend_Controller {
             $values = $this->getRequest()->getPost();
             $id = $values['id'];
             $userId = Zend_Auth::getInstance()->getIdentity()->id;
-            if(is_numeric($id) && $submissionModel->deleteByIdUser($id,$userId)){
+            $classId = Zend_Auth::getInstance()->getIdentity()->class_id;
+            if(!$submissionModel->canDelete($id,$classId,$userId)){
+                $this->_helper->FlashMessenger(
+                    array(
+                        'msg-error' => 'You can not delete answer after End Date expiration.',
+                    )
+                );
+                
+                $this->_redirect($returnUrl,array('prependBase'=>false));
+            }
+            
+            if(is_numeric($id) && $submissionModel->deleteById($id)){
                 $this->_helper->FlashMessenger(
                     array(
                         'msg-success' => 'Your answer was successfully deleted.',
@@ -111,8 +121,8 @@ class AnswerController extends App_Frontend_Controller {
                     )
                 );
             }
-            $this->_redirect($returnUrl,array('prependBase'=>false));
         }
+        $this->_redirect($returnUrl,array('prependBase'=>false));
     }
     
     public function downloadAction(){
