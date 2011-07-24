@@ -32,8 +32,7 @@ CREATE TABLE `admin_users` (
 -- Dumping data for table `admin_users`
 --
 
-INSERT INTO `admin_users` (`id`, `firstname`, `lastname`, `username`, `password`, `password_valid`, `email`, `phone_number`, `active`, `last_login`, `last_password_update`) VALUES (`1`,`Kode`,`Admin`,`admin`,`6c64e8dcebc17e3d08546a355b52817f63eb6fe2`,`0`,`root@localhost`,``,`1`,``,``);
-
+INSERT INTO `admin_users` (`id`, `firstname`, `lastname`, `username`, `password`, `password_valid`, `email`, `phone_number`, `active`, `last_login`, `last_password_update`) VALUES (NULL, 'Kode', 'Admin', 'admin', MD5('admin'), '1', '6c64e8dcebc17e3d08546a355b52817f63eb6fe2', '1111111', '1', NULL, NULL);
 -- --------------------------------------------------------
 
 --
