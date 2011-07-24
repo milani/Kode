@@ -101,7 +101,7 @@ class App_FlagFlippers_Manager {
      * @return Zend_Acl | boolean
      */
     private static function _getFromMemcache(){
-
+        if(Zend_Registry::get('config')->cache->enabled !== TRUE) return FALSE;
         $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
         $acl = $cacheHandler->load(App_FlagFlippers_Manager::$indexKey);
         if( $acl ){
@@ -219,8 +219,10 @@ class App_FlagFlippers_Manager {
         if( empty($acl) ){
             throw new Exception('You must provide a valid Acl in order to store it');
         }
-        $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
-        $cacheHandler->save($acl, App_FlagFlippers_Manager::$indexKey);
+        if(Zend_Registry::get('config')->cache->enabeld){
+            $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
+            $cacheHandler->save($acl, App_FlagFlippers_Manager::$indexKey);
+        }
     }
 
     /**

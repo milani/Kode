@@ -241,8 +241,10 @@ class Bootstrap extends App_Bootstrap_Abstract {
         if( $locale instanceof Zend_Locale ){
             Zend_Registry::set('Zend_Locale', $locale);
         }
-        $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
-        $locale->setCache($cacheHandler);
+        if(Zend_Registry::get('config')->cache->enabled){
+            $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
+            $locale->setCache($cacheHandler);
+        }
     }
 
     /**
@@ -270,9 +272,10 @@ class Bootstrap extends App_Bootstrap_Abstract {
         		'scan' => Zend_Translate::LOCALE_DIRECTORY
             )
         );
-        $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
-        $translate->setCache($cacheHandler);
-        
+        if(Zend_Registry::get('config')->cache->enabled){
+            $cacheHandler = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
+            $translate->setCache($cacheHandler);
+        }
         Zend_Registry::set('Zend_Translate', $translate);
         Zend_Registry::set('Translate_Logger', $logger);
     }
@@ -343,6 +346,9 @@ class Bootstrap extends App_Bootstrap_Abstract {
                 )
             );
             if( $config->zfdebug->show_cache_panel ){
+                if( $config->cache->enabled !== TRUE ){
+                    throw new Zend_Exception('Do you want to enable zfdebug cache panel while caching is disabled?');
+                }
                 $fileCache = Zend_Registry::get('Zend_Cache_Manager')->getCache('file');
                 $memcacheCache = Zend_Registry::get('Zend_Cache_Manager')->getCache('memcache');
                 $options['plugins']['Cache'] = array(
@@ -376,12 +382,16 @@ class Bootstrap extends App_Bootstrap_Abstract {
      * @return void
      */
     protected function _initCache(){
-
+    
         $manager = new Zend_Cache_Manager();
-        //Add the templates to the manager
-        foreach( Zend_Registry::get('config')->cache->toArray() as $k => $v ){
-            $v['frontend']['options']['logger'] = Zend_Registry::get('Zend_Log');
-            $manager->setCacheTemplate($k, $v);
+        $cacheConfig = Zend_Registry::get('config')->cache;
+        if($cacheConfig->enabled){
+            //Add the templates to the manager
+            unset($cacheConfig->enabled);
+            foreach( $cacheConfig->toArray() as $k => $v ){
+                $v['frontend']['options']['logger'] = Zend_Registry::get('Zend_Log');
+                $manager->setCacheTemplate($k, $v);
+            }
         }
         Zend_Registry::set('Zend_Cache_Manager', $manager);
     }
