@@ -1,4 +1,5 @@
 application/config/app.ini
+application/config/environment.php
 data/
 .settings/
 .buildpath
