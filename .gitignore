@@ -1,6 +1,9 @@
 application/config/app.ini
 application/config/environment.php
-data/
+data/sessions
+data/uploads
+data/logs/
+data/cache/
 .settings/
 .buildpath
 .project
