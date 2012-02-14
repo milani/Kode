@@ -24,12 +24,13 @@ class AssignmentAddForm extends AssignmentForm {
     public function isValid($data){
         $isValid = parent::isValid($data);
         
+        if( !$isValid ) return $isValid;
+
         $dueDate = new App_Date($this->getValue('assignment_due_date'));
         $today = new App_Date();
         if($dueDate->isLater($today)){
             $isValid = $isValid & true;
         }else{
-            
             $this->getElement('assignment_due_date')->addError('Due date is earlier than now');
             $isValid = $isValid & false;
         }

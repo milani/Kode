@@ -95,10 +95,19 @@ class AssignmentController extends App_Admin_Controller {
         $this->title = 'New assignment';
         
         $returnUrl = $this->_helper->url('index','class','admin');
-        
+
         $form = new AssignmentBatchForm();
         $form->setCancelLink($returnUrl);
         
+        if(!$form->canCreate()){
+          $this->_helper->FlashMessenger(
+              array(
+                  'msg-warn' => sprintf('There is no class to create an assignment for it.'),
+              )
+          );
+          $this->_redirect($returnUrl,array('prependBase'=>false));
+        }
+
         $assignmentModel = new Assignment();
         
         if ($this->getRequest()->isPost()) {

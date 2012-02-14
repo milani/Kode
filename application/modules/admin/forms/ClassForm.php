@@ -9,6 +9,7 @@
  */
 class ClassForm extends App_Admin_Form {
 
+    protected $hasCourse = false;
     /**
      * Overrides init() in Zend_Form
      * 
@@ -25,6 +26,8 @@ class ClassForm extends App_Admin_Form {
         $courseModel = new Course();
         $courseIdOptions = $courseModel->findPairs();
         
+        if(count($courseIdOptions) > 0) $this->hasCourse = true;
+
         $name = new Zend_Form_Element_Text('class_name');
         $name->setOptions(
             array(
@@ -114,5 +117,9 @@ class ClassForm extends App_Admin_Form {
             )
         );
         $this->addElement($submit);
+    }
+    
+    public function canCreate(){
+      return $this->hasCourse;
     }
 }

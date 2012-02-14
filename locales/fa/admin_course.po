@@ -237,3 +237,8 @@ msgstr "پاسخ داده شده"
 msgid "Assignment Title"
 msgstr "سری تمرین"
 
+msgid "There is no class to create an assignment for it."
+msgstr "هنوز هیچ کلاسی ایجاد نشده است."
+
+msgid "Please define a course first."
+msgstr "لطفا ابتدا یک درس را در سیستم تعریف نمایید."

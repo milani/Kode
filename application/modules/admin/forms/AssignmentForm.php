@@ -117,6 +117,8 @@ class AssignmentForm extends App_Admin_Form {
     public function isValid($data){
         $isValid = parent::isValid($data);
         
+        if( !$isValid ) return $isValid;
+        
         $startDate = new App_Date($this->getValue('assignment_start_at'));
         $dueDate = new App_Date($this->getValue('assignment_due_date'));
         $endDate = new App_Date($this->getValue('assignment_end_at'));

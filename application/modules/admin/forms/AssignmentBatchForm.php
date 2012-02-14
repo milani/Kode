@@ -9,6 +9,8 @@
  */
 class AssignmentBatchForm extends AssignmentAddForm {
 
+    protected $hasClass = false;
+
     /**
      * Overrides init() in Zend_Form
      * 
@@ -23,6 +25,10 @@ class AssignmentBatchForm extends AssignmentAddForm {
         $classModel = new ClassModel();
         $classIdOptions = $classModel->findPairs();
         
+        if(count($classIdOptions) > 0){
+          $this->hasClass = true;
+        }
+
         $classes = new Zend_Form_Element_MultiCheckbox('class_id');
         $classes->setOptions(
             array(
@@ -47,5 +53,9 @@ class AssignmentBatchForm extends AssignmentAddForm {
             )
         );
         $this->addElement($submit);
+    }
+    
+    public function canCreate(){
+      return $this->hasClass;
     }
 }

@@ -66,6 +66,15 @@ class ClassController extends App_Admin_Controller {
         $form = new ClassForm();
         $classModel = new ClassModel();
         
+        if( !$form->canCreate() ){
+          $this->_helper->FlashMessenger(
+              array(
+                  'msg-warn' => sprintf('Please define a course first.'),
+              )
+          );
+
+          $this->_redirect('/class/');
+        }
         if ($this->getRequest()->isPost()) {
             if($form->isValid($this->getRequest()->getPost())) {
                 $classModel->save($form->getValues());
