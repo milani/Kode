@@ -28,6 +28,8 @@ class ClassForm extends App_Admin_Form {
         
         if(count($courseIdOptions) > 0) $this->hasCourse = true;
 
+        $numberFilter = new App_Filter_Number();
+
         $name = new Zend_Form_Element_Text('class_name');
         $name->setOptions(
             array(
@@ -86,7 +88,8 @@ class ClassForm extends App_Admin_Form {
                 'required' => true,
                 'filters' => array(
                     'StringTrim',
-                    'StripTags'
+                    'StripTags',
+                    $numberFilter
                 ),
                 'validators' => array(
                     'NotEmpty','Int'
