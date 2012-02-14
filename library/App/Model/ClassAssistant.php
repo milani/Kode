@@ -69,18 +69,36 @@ class ClassAssistant extends App_Model {
             $row['admin_user_id'] = $userId;
             $this->insert($row);
         }
+        
+        $this->addProfessorAccess($data['class_id']);
+    }
+    
+    public function addProfessorAccess($classId){
+        $adminUserModel = new AdminUserGroup();
+        $professors = $adminUserModel->findByGroupId('1');
+        foreach($professors as $professor){
+          $this->insert(array('class_id' => $classId,'admin_user_id' => $professor['user_id']));
+        }
     }
     
     public function unassignAssistants($classId){
         $this->delete(array('class_id'=>$classId));
     }
-    
+
+    public function checkAccess($classId, $userId){
+        $select = $this->_getSelect(true);
+        $select->where('class_id = ?',$classId);
+        $select->where('admin_user_id = ?',$userId);
+        $hasRecord = $this->_db->fetchRow($select);
+        return ($hasRecord == NULL)?false:true;
+    }
+
     public function findByClass($classId){
         $select = $this->_getSelect(true);
         $select->where('class_id = ?',$classId);
         return $this->_db->fetchAll($select);
     }
-    
+
     protected function _select(){
 
         $select = new Zend_Db_Select($this->_db);

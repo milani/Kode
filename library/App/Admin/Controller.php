@@ -43,6 +43,7 @@ abstract class App_Admin_Controller extends App_Controller {
         Zend_Registry::set('actionName', $actionName);
         // check the Flag and Flippers
         $this->_checkFlagFlippers();
+        $this->_checkAssistantAccess();
     }
 
     /**
@@ -86,6 +87,22 @@ abstract class App_Admin_Controller extends App_Controller {
         $session->$key['page'] = $page;
         return $page;
     }
+    
+    
+    public function _checkAssistantAccess(){ 
+
+       $classId = $this->_getParam('classid');
+       
+       if( !$classId ) return;
+       
+       $userId = Zend_Auth::getInstance()->getIdentity()->id;      
+       $classAssistantModel = new ClassAssistant();
+       
+       if(!$classAssistantModel->checkAccess($classId,$userId)){
+         $this->_redirect('/error/forbidden/');
+       }
+
+    }
 
     /**
      * Queries the Flag and Flipper and redirects the user to a different
@@ -120,6 +137,7 @@ abstract class App_Admin_Controller extends App_Controller {
                 return;
             }
         }
+        
         if( ! App_FlagFlippers_Manager::isAllowed($user->username, $controllerName, $actionName) ){
             
             if( $user->username == 'guests' ){

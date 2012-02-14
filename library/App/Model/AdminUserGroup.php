@@ -79,6 +79,13 @@ class AdminUserGroup extends App_Model {
         return $this->_db->fetchAll($select);
     }
 
+    public function findByGroupId($groupId){
+        $select = new Zend_Db_Select($this->_db);
+        $select->from($this->_name);
+        $select->where('group_id = ?',$groupId);
+        return $this->_db->fetchAll($select);
+    }
+
     /**
      * Delete all associations with the given group
      * 

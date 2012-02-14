@@ -26,7 +26,7 @@ class ClassAssistantForm extends App_Admin_Form {
         $classIdOptions = $classModel->findPairs();
         
         $adminUserModel = new AdminUser();
-        $adminIdOptions = $adminUserModel->findPairs();
+        $adminIdOptions = $adminUserModel->findAssistants();
         
         $users = new Zend_Form_Element_MultiCheckbox('admin_user_id');
         $users->setOptions(

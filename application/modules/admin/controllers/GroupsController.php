@@ -156,7 +156,7 @@ class GroupsController extends App_Admin_Controller
             $row = $groupModel->findById($id);
             
             $identity=Zend_Auth::getInstance()->getIdentity();
-        	$userGroupModel = new AdminUserGroup();
+        	  $userGroupModel = new AdminUserGroup();
             $userGroupId = $userGroupModel->findByUserId($identity->id);
             
             if ($id == $userGroupId[0]['group_id']) {

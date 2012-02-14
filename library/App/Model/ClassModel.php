@@ -53,6 +53,22 @@ class ClassModel extends App_Model {
      */
     protected $_displayColumn = 'class_name';
     
+
+    public function classList($page = 1, $userId, $paginate = NULL, $force = FALSE){
+
+      if($userId == NULL){
+        return $this->findAll();
+      }
+
+      $select = $this->_getSelect($force);
+      $select->join(array(
+           'ca' => 'class_assistant'
+      ), 'ca.class_id = a.id');
+      $select->where('admin_user_id = ?',$userId);
+
+      return $this->_paginate($select, $page, $paginate);
+    }
+
     public function findPairs($force = false){
         
         $this->_setupPrimaryKey();
@@ -60,10 +76,10 @@ class ClassModel extends App_Model {
         $select->reset(Zend_Db_Table::COLUMNS);
         $alias = $this->_extractTableAlias($select);
         $select->columns(
-                array(
-                    'a.id', 
-                    'CONCAT(a.class_name," - ",c.course_name)'
-                )
+            array(
+                'a.id', 
+                'CONCAT(a.class_name," - ",c.course_name)'
+            )
         );
         return $this->_db->fetchPairs($select);
     }

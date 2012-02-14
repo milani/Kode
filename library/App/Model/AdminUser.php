@@ -305,6 +305,29 @@ class AdminUser extends App_Model {
         return $row;
     }
     
+    public function findAssistants($force = FALSE){
+
+        if( NULL === $this->_displayColumn ){
+            $message = 'Please set the $displayColumn property for instances of the ' .
+             get_class($this) . ' class';
+            throw new Zend_Exception($message);
+        }
+        $select = $this->_getSelect($force);
+        $alias = $this->_extractTableAlias($select);
+        $select->join(array(
+          'g' => 'admin_users_groups'
+        ),'g.user_id = '.$alias.'.id');
+        $select->where('group_id != 1');
+        $select->reset(Zend_Db_Table::COLUMNS);
+        $select->columns(
+          array(
+              $alias . '.id', 
+              $alias . '.' . $this->_displayColumn
+          )
+        );
+        return $this->_db->fetchPairs($select);
+    }
+
     public function findByUsername($username,$force = false){
         $select = $this->_getSelect($force);
         $column = $this->_extractTableAlias($select) . '.' . 'username';

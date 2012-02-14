@@ -9,6 +9,7 @@
  */
 class ClassController extends App_Admin_Controller {
 
+
     /**
      * Overrides Zend_Controller_Action::init()
      *
@@ -29,7 +30,11 @@ class ClassController extends App_Admin_Controller {
      */
     public function indexAction(){
        $classModel = new ClassModel();
-       $this->view->paginator = $classModel->findAll($this->_getPage());
+       $adminUserModel = new AdminUser();
+
+       $userId = Zend_Auth::getInstance()->getIdentity()->id;
+
+       $this->view->paginator = $classModel->classList($this->_getPage(),$userId);
     }
     
     public function assistantsAction(){
@@ -65,7 +70,8 @@ class ClassController extends App_Admin_Controller {
         
         $form = new ClassForm();
         $classModel = new ClassModel();
-        
+        $classAssistantModel = new ClassAssistant();
+
         if( !$form->canCreate() ){
           $this->_helper->FlashMessenger(
               array(
@@ -77,10 +83,12 @@ class ClassController extends App_Admin_Controller {
         }
         if ($this->getRequest()->isPost()) {
             if($form->isValid($this->getRequest()->getPost())) {
-                $classModel->save($form->getValues());
+                $id = $classModel->save($form->getValues());
+                $classAssistantModel->addProfessorAccess($id);
+                
                 $this->_helper->FlashMessenger(
                     array(
-                        'msg-success' => sprintf('Course "%s" was successfully added.', $form->getValue('course_name')),
+                        'msg-success' => sprintf('Class "%s" was successfully added.', $form->getValue('class_name')),
                     )
                 );
                 
@@ -145,10 +153,12 @@ class ClassController extends App_Admin_Controller {
         
         $form = new DeleteForm();
         $classModel = new ClassModel();
-        
+        $classAssistantModel = new ClassAssistant();
+
         if ($this->getRequest()->isPost()) {
             if($form->isValid($this->getRequest()->getPost())) {
                 $classModel->deleteById($form->getValue('id'));
+                $classAssistantModel->unassignAssistants($form->getValue('id'));
                 $this->_helper->FlashMessenger(
                     array(
                         'msg-success' => 'The class was successfully deleted.',
