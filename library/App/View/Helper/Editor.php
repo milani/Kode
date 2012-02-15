@@ -40,6 +40,7 @@ class App_View_Helper_Editor extends Zend_View_Helper_FormElement {
         $editor->basePath = $baseUrl.'/CKEditor/';
         $editor->config['height'] = $info['attribs']['height'];
         $editor->config['width'] = $info['attribs']['width'];
+        $editor->config['plugins'] = 'basicstyles,bidi,blockquote,button,clipboard,colorbutton,colordialog,contextmenu,dialogadvtab,elementspath,enterkey,entities,filebrowser,find,font,format,horizontalrule,htmldataprocessor,indent,justify,keystrokes,link,list,liststyle,maximize,pastefromword,pastetext,popup,removeformat,resize,scayt,showborders,stylescombo,table,tabletools,specialchar,tab,toolbar,undo,wysiwygarea,wsc';
         $editor->returnOutput = true;
         $editor->textareaAttributes = $info['attribs'];
         //$config=array('toolbar'=>'Full');
