@@ -164,9 +164,17 @@ class App_Validate_DuplicateFile extends Zend_Validate_Db_Abstract {
 
         $this->addFile($value);
         if($this->_dbCheck){
-            $db = $this->getAdapter();
-            $select = $this->getSelect();
-            
+
+            if ($this->_adapter === null) {
+                $this->_adapter = Zend_Db_Table_Abstract::getDefaultAdapter();
+                if (null === $this->_adapter) {
+                    require_once 'Zend/Validate/Exception.php';
+                    throw new Zend_Validate_Exception('No database adapter present');
+                }
+            }
+            $db = $this->_adapter;
+            $select = new Zend_Db_Select($db);
+            $select->from($this->_table, array($this->_field), $this->_schema);
             $select->reset(Zend_Db_Select::WHERE);
             if(isset($this->_groupingField) && isset($this->_groupingValue)){
                 $select->where($db->quoteIdentifier($this->_groupingField, true).' = '. $db->quote($this->_groupingValue));

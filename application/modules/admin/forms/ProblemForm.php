@@ -40,7 +40,7 @@ class ProblemForm extends App_Admin_Form {
             	'image',
             	'application/pdf',
             	'application/zip',
-                'application/x-rar',
+              'application/x-rar',
             	'application/msword',
             	'application/mspowerpoint',
             	'application/powerpoint',
