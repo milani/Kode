@@ -52,6 +52,9 @@ class UserForm extends App_Frontend_Form {
         );
         $groupsInArrayValidator->setMessage('Please select at least one group. If you are not sure about which group is better, select "member".');
         
+        $digitsValidator = new Zend_Validate_Digits();
+        $digitsValidator->setMessage('Please enter your student number.');
+
         $numberFilter = new App_Filter_Number();
         
         $username = new Zend_Form_Element_Text('username');
@@ -59,13 +62,13 @@ class UserForm extends App_Frontend_Form {
             array(
             	'label' => 'Student Number',
             	'required' => true,
-                'filters' => array(
+              'filters' => array(
             		'StringTrim', 'StripTags',$numberFilter
                 ),
-        		'validators' => array(
-            		'NotEmpty', $uniqueStudentNumberValidator
-                )
-            )
+          		'validators' => array(
+              		'NotEmpty',$digitsValidator,$uniqueStudentNumberValidator
+              )
+           )
         );
         $this->addElement($username);
         
@@ -74,13 +77,13 @@ class UserForm extends App_Frontend_Form {
             array(
             	'label' => 'Email',
             	'required' => true, 
-        		'filters' => array(
-            		'StringTrim', 'StripTags'
-                ), 
-        		'validators' => array(
-            		'NotEmpty', $uniqueEmailValidator
-                )
-            )
+          		'filters' => array(
+              		'StringTrim', 'StripTags'
+                  ), 
+          		'validators' => array(
+              		'NotEmpty', $uniqueEmailValidator
+                  )
+              )
         );
         $this->addElement($email);
         
@@ -89,12 +92,12 @@ class UserForm extends App_Frontend_Form {
             array(
             	'label' => 'First name',
             	'required' => true, 
-        		'filters' => array(
+        		  'filters' => array(
             		'StringTrim', 'StripTags'
-                ),
-                'validators' => array(
+              ),
+              'validators' => array(
             		'NotEmpty'
-                )
+              )
             )
         );
         $this->addElement($firstname);
@@ -104,12 +107,12 @@ class UserForm extends App_Frontend_Form {
             array(
             	'label' => 'Last name',
             	'required' => true, 
-        		'filters' => array(
+        		  'filters' => array(
             		'StringTrim', 'StripTags'
-                ),
-                'validators' => array(
+              ),
+              'validators' => array(
             		'NotEmpty'
-                )
+              )
             )
         );
         $this->addElement($lastname);
@@ -143,7 +146,7 @@ class UserForm extends App_Frontend_Form {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setOptions(
             array(
-                'label' => 'Save changes',
+              'label' => 'Save changes',
             	'required' => true,
             	'order' => 100
             )

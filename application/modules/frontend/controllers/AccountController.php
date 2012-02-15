@@ -40,11 +40,13 @@ class AccountController extends App_Frontend_Controller {
     public function editAction(){
 
         $this->title = 'Edit your account';
-        $form = new UserForm();
+        $form = new UserEditForm();
         $userModel = new FrontUser();
         if( $this->getRequest()->isPost() ){
             if( $form->isValid($this->getRequest()->getPost()) ){
-                $userModel->updateProfile($form->getValues());
+                $values = $form->getValues();
+                unset($values['username']);
+                $userModel->updateProfile($values);
                 $this->_helper->FlashMessenger(
                     array(
                         'msg-success' => 'Your profile was successfully updated.'

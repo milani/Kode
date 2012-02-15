@@ -34,7 +34,7 @@ class SubmissionForm extends App_Frontend_Form {
             	'image',
             	'application/pdf',
             	'application/zip',
-                'application/x-rar',
+              'application/x-rar',
             	'application/msword',
             	'application/mspowerpoint',
             	'application/powerpoint',
@@ -50,7 +50,7 @@ class SubmissionForm extends App_Frontend_Form {
         $fileSizeValidator = new Zend_Validate_File_Size(
             array(
             	'min'	=>    '5',
-                'max'	=>    '500000'
+              'max'	=>    '500000'
             )
         );
         
