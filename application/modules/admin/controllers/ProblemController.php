@@ -260,7 +260,7 @@ class ProblemController extends App_Admin_Controller {
     }
     
     public function deleteattachmentAction(){
-        $this->title('Delete attachment');
+        $this->title = 'Delete attachment';
         
         $classId = $this->_requireParam('classid', App_Controller::NUMERIC_T,$this->_helper->url('index','class'));
         $assignmentId = $this->_requireParam('assignmentid', App_Controller::NUMERIC_T,$this->_helper->url('index','assignment','admin',array('classid'=>$classId)));
