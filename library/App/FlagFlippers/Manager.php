@@ -69,7 +69,12 @@ class App_FlagFlippers_Manager {
         if( ! empty($resource) ){
             $resource = strtolower(CURRENT_MODULE) . '-' . $resource;
         }
-        return App_FlagFlippers_Manager::_getFromRegistry()->isAllowed($role,$resource, $action);
+
+        try{
+          return App_FlagFlippers_Manager::_getFromRegistry()->isAllowed($role,$resource, $action);
+        }catch(Zend_Acl_Role_Registery_Exception $e){
+          return false;
+        }
     }
 
     /**
