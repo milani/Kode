@@ -230,19 +230,24 @@ class FrontUser extends App_Model {
      * @access public
      * @return Zend_Paginator
      */
-    public function findAll($page = 1){
+    public function findAll($page = 1,$paginate = NULL){
 
-        $paginator = parent::findAll($page);
-        $items = array();
-        $userGroupModel = new FrontUserGroup();
-        foreach( $paginator as $item ){
-            $item['groups'] = array();
-            foreach( $userGroupModel->findByUserId($item['id'], TRUE) as $group ){
-                $item['groups'][$group['id']] = $group['name'];
-            }
-            $items[] = $item;
+        if($paginate === false){
+          $paginator = parent::findAll($page, false);
+          $userGroupModel = new FrontUserGroup();
+          $items = array();
+          foreach( $paginator as $item ){
+              $item['groups'] = array();
+              foreach( $userGroupModel->findByUserId($item['id'], TRUE) as $group ){
+                  $item['groups'][$group['id']] = $group['name'];
+              }
+              $items[] = $item;
+          }
+          return $items;
         }
-        $paginator = Zend_Paginator::factory($items);
+
+        $select = $this->_getSelect();
+        $paginator = Zend_Paginator::factory($select);
         $paginator->setCurrentPageNumber($page);
         $paginator->setItemCountPerPage(Zend_Registry::get('config')->paginator->items_per_page);
         return $paginator;

@@ -142,13 +142,13 @@ class App_FlagFlippers_Manager {
         $userModel = new AdminUser();
         $userStudentModel = new FrontUser();
         
-        $users = $userModel->findAll();
+        $users = $userModel->findAll(null,false);
         foreach( $users as $user ){
             $aclObject->addRole(new Zend_Acl_Role($user['username']), $user['groups']);
         }
         
         //Add students
-        $users = $userStudentModel->findAll();
+        $users = $userStudentModel->findAll(null,false);
         foreach( $users as $user ){
             $aclObject->addRole(new Zend_Acl_Role($user['username']), $user['groups']);
         }
