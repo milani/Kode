@@ -72,7 +72,9 @@ class App_FlagFlippers_Manager {
 
         try{
           return App_FlagFlippers_Manager::_getFromRegistry()->isAllowed($role,$resource, $action);
-        }catch(Zend_Acl_Role_Registery_Exception $e){
+        }catch(Zend_Acl_Role_Registry_Exception $e){
+          $auth = Zend_Auth::getInstance();
+          $auth->clearIdentity();
           return false;
         }
     }
@@ -206,6 +208,7 @@ class App_FlagFlippers_Manager {
         //Everbody can see the errors
         $aclObject->allow(null, 'frontend-error');
         $aclObject->allow(null, 'admin-error');
+
         //Admins are allowed everywhere
         $aclObject->allow('professor');
         return $aclObject;

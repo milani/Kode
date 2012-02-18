@@ -77,15 +77,15 @@ class AccountController extends App_Admin_Controller {
         $form = new ChangePasswordForm();
         $userModel = new AdminUser();
         if( $this->getRequest()->isPost() ){
-            if( $form->isValid($this->getRequest()
-                ->getPost()) ){
+            if( $form->isValid($this->getRequest()->getPost()) ){
                 $userModel->changePassword($form->getValue('password'));
                 $this->_helper->FlashMessenger(
-                array(
-                    
-                'msg-success' => 'Your password was successfully changed.'
-                ));
-                $this->_redirect('/account/');
+                  array(
+                  'msg-success' => 'Your password was successfully changed.'
+                  )
+                );
+
+                $this->_redirect('/account/change-password');
             }
         }
         $this->view->form = $form;
