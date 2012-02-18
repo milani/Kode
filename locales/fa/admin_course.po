@@ -242,3 +242,4 @@ msgstr "هنوز هیچ کلاسی ایجاد نشده است."
 
 msgid "Please define a course first."
 msgstr "لطفا ابتدا یک درس را در سیستم تعریف نمایید."
+

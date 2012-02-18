@@ -133,8 +133,11 @@ msgstr "درخواست شما ارسال شد. پس از تایید درخواس
 msgid "Your account is deactivated. Contact Administrator"
 msgstr "حساب کاربری شما غیر فعال است. با مدیریت تماس بگیرید"
 
+msgid "Please enter your student number."
+msgstr "لطفا شماره دانشجویی معتبری وارد کنید."
+
 msgid "Dashboard"
-msgstr "صفحه من"
+msgstr "صفحه پیام‌ها"
 
 msgid "Notifications"
 msgstr "پیام ها"
