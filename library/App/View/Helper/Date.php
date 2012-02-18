@@ -55,44 +55,49 @@ class App_View_Helper_Date extends Zend_View_Helper_FormElement {
         
         if($value){
             $script = "<script type='text/javascript'>
-					$(document).ready(function(){
-    					var ".$name." = $('#".$name."').val().split(' ');
-    	                var ".$name."_t =  ".$name."[1];
-    					var ".$name."_d = new Date(".$name."[0]);
-    					".$name."_d.setUTCHours(".$name."_t.split(':')[0]);
-    					".$name."_d.setUTCMinutes(".$name."_t.split(':')[1]);
-                    	Calendar.setup({
-                    		showsTime		:	true,
-                    		timeFormat		:	'24',
-                    		daFormat       	:	'%d %b %Y ساعت %H:%M',
-                    		ifFormat       	:	'%Y-%m-%d %H:%M',
-                    		dateType		:	'jalali',
-                    		ifDateType		:	'gregorian',
-                    		inputField     	:	'".$name."',
-                    		displayArea 	:	'".$name."_show',
-                    		button			:	'".$name."_btn',
-                    		autoFillAtStart	:	true,
-                    		date			:	".$name."_d
-                    	});
-                	});
-                </script>";
+					                $(document).ready(function(){
+                    					var ".$name."   = $('#".$name."').val().split(' ');
+                    	        var ".$name."_t =  ".$name."[1];
+                    					var ".$name."_d = new Date(".$name."[0]);
+                    					".$name."_d.setUTCHours(".$name."_t.split(':')[0]);
+                    					".$name."_d.setUTCMinutes(".$name."_t.split(':')[1]);
+                            	Calendar.setup({
+                            		showsTime		:	true,
+                            		timeFormat		:	'24',
+                            		daFormat       	:	'%d %b %Y ساعت %H:%M',
+                            		ifFormat       	:	'%Y-%m-%d %H:%M',
+                            		dateType		:	'jalali',
+                            		ifDateType		:	'gregorian',
+                            		inputField     	:	'".$name."',
+                            		displayArea 	:	'".$name."_show',
+                            		button			:	'".$name."_btn',
+                            		autoFillAtStart	:	true,
+                            		date			:	".$name."_d
+                            	});
+                        	});
+                        </script>";
         }else{
             $script = "<script type='text/javascript'>
-					$(document).ready(function(){
-                    	Calendar.setup({
-                    		showsTime		:	true,
-                    		timeFormat		:	'24',
-                    		daFormat       	:	'%d %b %Y ساعت %H:%M',
-                    		ifFormat       	:	'%Y-%m-%d %H:%M',
-                    		dateType		:	'jalali',
-                    		ifDateType		:	'gregorian',
-                    		inputField     	:	'".$name."',
-                    		displayArea 	:	'".$name."_show',
-                    		button			:	'".$name."_btn',
-                    		autoFillAtStart	:	false
-                    	});
-                	});
-                </script>";
+					                $(document).ready(function(){
+                    					var ".$name."_d = new Date();
+                    					{$name}_d.setUTCDate(${name}_d.getUTCDate() + 1);
+                    					".$name."_d.setUTCHours(00);
+                    					".$name."_d.setUTCMinutes(00);
+                            	Calendar.setup({
+                            		showsTime		:	true,
+                            		timeFormat		:	'24',
+                            		daFormat       	:	'%d %b %Y ساعت %H:%M',
+                            		ifFormat       	:	'%Y-%m-%d %H:%M',
+                            		dateType		:	'jalali',
+                            		ifDateType		:	'gregorian',
+                            		inputField     	:	'".$name."',
+                            		displayArea 	:	'".$name."_show',
+                            		button			:	'".$name."_btn',
+                            		autoFillAtStart	:	false,
+                            		date			:	".$name."_d
+                            	});
+                        	});
+                        </script>";
         }
         return  '<input id="'.$name.'" name="'.$name.'" type="hidden" value="'.$value.'" />'.
         		'<div id="'.$name.'_show" class="dateBox"></div>'.
