@@ -36,7 +36,7 @@ class AnswerController extends App_Frontend_Controller {
         
         $id = $this->_requireParam('id', App_Controller::NUMERIC_T,$returnUrl);
         $userId = Zend_Auth::getInstance()->getIdentity()->id;
-        $classId = $userId = Zend_Auth::getInstance()->getIdentity()->class_id;
+        $classId = Zend_Auth::getInstance()->getIdentity()->class_id;
         
         $submissionModel = new Submission();
         
@@ -70,7 +70,6 @@ class AnswerController extends App_Frontend_Controller {
         }
 
         $row = $submissionModel->findByProblemId($id,$userId);
-        
         if (!empty($row)) {
             $form->populate($row);
             $attachmentModel = new SubmissionAttachment();
