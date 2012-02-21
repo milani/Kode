@@ -69,7 +69,7 @@ class AnswerController extends App_Frontend_Controller {
             }
         }
 
-        $row = $submissionModel->findByProblemId($id);
+        $row = $submissionModel->findByProblemId($id,$userId);
         
         if (!empty($row)) {
             $form->populate($row);

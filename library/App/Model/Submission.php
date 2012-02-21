@@ -102,9 +102,10 @@ class Submission extends App_Model {
         return $id;
     }
     
-    public function findByProblemId($problemId){
+    public function findByProblemId($problemId,$userId){
         $select = $this->_getSelect();
         $select->where('s.problem_id = ?',$problemId);
+        $select->where('s.user_id = ?',$userId);
         return $this->_db->fetchRow($select);
     }
     
