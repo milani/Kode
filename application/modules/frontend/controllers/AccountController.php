@@ -46,6 +46,7 @@ class AccountController extends App_Frontend_Controller {
             if( $form->isValid($this->getRequest()->getPost()) ){
                 $values = $form->getValues();
                 unset($values['username']);
+                unset($values['class_id']);
                 $userModel->updateProfile($values);
                 $this->_helper->FlashMessenger(
                     array(

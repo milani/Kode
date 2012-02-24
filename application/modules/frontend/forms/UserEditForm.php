@@ -21,6 +21,7 @@ class UserEditForm extends UserForm {
         // init the parent
         parent::init();
         $this->getElement('username')->setOptions(array('required'=>false))->setAttrib('disabled', 'disabled');
+        $this->getElement('class_id')->setOptions(array('required'=>false))->setAttrib('disabled', 'disabled');
     }
 
 }
