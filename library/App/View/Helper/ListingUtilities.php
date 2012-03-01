@@ -580,9 +580,9 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
                 $result = '<ul><li>' . implode('</li><li>', $item) . '</li></ul>';
             }
         }else{
-            $time = @strtotime($item);
+//            $time = @strtotime($item);
             
-            if( App_Date::isDate($item,'Y-m-d H:i:s')){
+            if( strlen($item) > 20 && App_Date::isDate($item,'Y-m-d H:i:s')){
                 $result = $this->view->formatDate($item);
             }else 
                 if( isset($this->_columnDataTypes[$index]) && $this->_columnDataTypes[$index] == 'boolean' ){
