@@ -63,6 +63,9 @@ $config['columnIndexes'] = array(
 
 // configure the permissions
 $config['linkOrder'] = array('download','print','problems');
+$config['viewLinkColumn'] = 'assignment_title';
+$config['viewLinkParams'] = array('controller'=>'problem','action'=>'index');
+$config['viewLinkParameterName'] = 'assignmentid';
 
 // render the default listing
 echo $this->partial(

@@ -57,16 +57,19 @@ $config['columnNames'] = array(
 );
 $config['columnIndexes'] = array(
     'assignment_title',
-	'problem_count',
+	  'problem_count',
     'class_name',
     'assignment_start_at',
     'assignment_due_date',
     'assignment_end_at',
-	'assignment_created_at',
+	  'assignment_created_at',
 );
 
 // configure the permissions
 $config['linkOrder'] = array('problems','copy', 'edit', 'delete');
+$config['viewLinkColumn'] = 'assignment_title';
+$config['viewLinkParams'] = array('controller'=>'problem','action'=>'index');
+$config['viewLinkParameterName'] = 'assignmentid';
 
 // render the default listing
 echo $this->partial(

@@ -58,6 +58,9 @@ $config['nullPlaceholders'] = array(
 
 // configure the permissions
 $config['linkOrder'] = array('submissions', 'edit', 'delete');
+$config['viewLinkColumn'] = 'problem_desc';
+$config['viewLinkParams'] = array('controller'=>'submission','action'=>'index');
+$config['viewLinkParameterName'] = 'problemid';
 
 // render the default listing
 echo $this->partial(

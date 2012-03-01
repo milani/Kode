@@ -181,6 +181,22 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
     protected $_viewLinkColumn = '';
 
     /**
+     * Holds the name of parameter to send with view link
+     * 
+     * @var mixed
+     * @access protected
+     */
+    protected $_viewLinkParameterName = 'id';
+
+    /**
+     * Holds the parameters needed for view link generation.
+     * 
+     * @var array
+     * @access protected
+     */
+    protected $_viewLinkParams;
+
+    /**
      * Hook that allows inserting a partial view to be
      * executed before the main content
      * 
@@ -234,6 +250,11 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
         $this->_enableTranslation = true;
         $this->_baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();
         $this->_controllerName = Zend_Registry::get('controllerName');
+        $this->_viewLinkParams = array(
+            'controller' => $this->_controllerName,
+        	  'action' => 'view'
+        );
+
         if( isset($config['additionalActions']) && ! empty($config['additionalActions']) ){
             $this->_actions += $config['additionalActions'];
             unset($config['additionalActions']);
@@ -597,12 +618,9 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
                 }
         }
 
-        if( $viewLink && $this->can('view') ){
-            $urlParams = array(
-                'controller' => $this->_controllerName,
-            	  'action' => 'view', 
-            	  'id' => $itemId
-            );
+        if( $viewLink && $this->can($this->_viewLinkParams['action'],$this->_viewLinkParams['controller'])){
+            $urlParams = $this->_viewLinkParams;
+            $urlParams[$this->_viewLinkParameterName] = $itemId;
             $result = sprintf('<a href="%1$s" title="%2$s">%3$s</a>', $this->_assembleUrl($urlParams), sprintf('View details for %s', $result), $result);
         }
         return $this->_return($result, $echo);

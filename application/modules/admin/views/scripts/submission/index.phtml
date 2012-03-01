@@ -68,7 +68,7 @@ $config['columnNames'] = array(
 $config['columnIndexes'] = array(
     'username',
     'submission_desc',
-	'attachment_count',
+	  'attachment_count',
     'submission_at',
     'grade'
 );
@@ -78,6 +78,8 @@ $config['nullPlaceholders'] = array(
 );
 
 $config['linkOrder'] = array('grade', 'download');
+$config['viewLinkColumn'] = 'username';
+$config['viewLinkParams'] = array('controller'=>'submission','action'=>'grade');
 
 // render the default listing
 echo $this->partial(
