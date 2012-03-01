@@ -596,11 +596,12 @@ class App_View_Helper_ListingUtilities extends Zend_View_Helper_Abstract {
                     $result = $item;
                 }
         }
+
         if( $viewLink && $this->can('view') ){
             $urlParams = array(
                 'controller' => $this->_controllerName,
-            	'action' => 'view', 
-            	'id' => $itemId
+            	  'action' => 'view', 
+            	  'id' => $itemId
             );
             $result = sprintf('<a href="%1$s" title="%2$s">%3$s</a>', $this->_assembleUrl($urlParams), sprintf('View details for %s', $result), $result);
         }

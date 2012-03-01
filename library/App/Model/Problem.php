@@ -332,9 +332,9 @@ class Problem extends App_Model {
         
         for($i = 0,$len = count($rows);$i < $len;$i++){
             $tmpText = strip_tags($rows[$i]['problem_desc']);
-            if(strlen($tmpText) > 360){
+            if(strlen($tmpText) > 300){
                 $tmpText .= ' ';
-                $tmpText = substr($tmpText,0,strpos($tmpText,' ',360));
+                $tmpText = substr($tmpText,0,strpos($tmpText,' ',300));
                 $tmpText .= '...';
             }
             $rows[$i]['problem_desc'] = $tmpText;

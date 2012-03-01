@@ -42,7 +42,7 @@ class AssignmentController extends App_Admin_Controller {
        $assignmentModel = new Assignment();
        
        $classId = $this->_requireParam('classid',App_Controller::NUMERIC_T);
-       
+
        if(is_numeric($classId)){
            $this->view->paginator = $assignmentModel->findByClass($classId,$this->_getPage());
        }else{

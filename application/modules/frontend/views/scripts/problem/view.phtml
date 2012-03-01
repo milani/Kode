@@ -19,7 +19,9 @@ $config['columnIndexes'] = array(
     'problem_desc'
 );
 $config['backlink'] = $this->backlink;
-echo $this->partial('partials/default-view.phtml', 
+$config['answerlink'] = $this->answerlink;
+
+echo $this->partial('partials/problem-view.phtml', 
     array(
     	'config'  => $config,
     	'item'    => $this->item,

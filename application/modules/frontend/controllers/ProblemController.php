@@ -54,7 +54,7 @@ class ProblemController extends App_Frontend_Controller {
         if (empty($row)) {
             $this->_helper->FlashMessenger(
                 array(
-					'msg-error' => sprintf('We cannot find problem with id %s', $id),
+					        'msg-error' => sprintf('We cannot find problem with id %s', $id)
                 )
             );
             $this->_redirect('/problem/');
@@ -64,6 +64,7 @@ class ProblemController extends App_Frontend_Controller {
         $this->view->item = $row;
         $this->view->attachments = $attachments;
         $this->view->backlink = $this->_helper->url('index','problem','frontend',array('assignmentid'=>$assignmentId));
+        $this->view->answerlink = $this->_helper->url('index','answer','frontend',array('assignmentid'=>$assignmentId,'id'=>$id));
     }
     
     public function downloadAction(){

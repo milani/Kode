@@ -145,3 +145,6 @@ msgstr "پیام ها"
 msgid "You have no notification."
 msgstr "پیامی برای شما وجود ندارد."
 
+msgid "← Go back"
+msgstr "بازگشت"
+
