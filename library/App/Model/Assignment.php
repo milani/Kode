@@ -232,7 +232,7 @@ class Assignment extends App_Model {
                 'co' => 'course'
             ), 'ca.course_id = co.id'
         );
-        $select->order(array('a.assignment_title ASC'));
+        $select->order(array('c.assignment_due_date DESC'));
         $select->reset(Zend_Db_Table::COLUMNS);
         $select->columns(
             array(
