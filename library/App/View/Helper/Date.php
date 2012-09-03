@@ -59,6 +59,7 @@ class App_View_Helper_Date extends Zend_View_Helper_FormElement {
                     					var ".$name."   = $('#".$name."').val().split(' ');
                     	        var ".$name."_t =  ".$name."[1];
                     					var ".$name."_d = new Date(".$name."[0]);
+                    					{$name}_d.setUTCDate(${name}_d.getUTCDate() - 1);
                     					".$name."_d.setUTCHours(".$name."_t.split(':')[0]);
                     					".$name."_d.setUTCMinutes(".$name."_t.split(':')[1]);
                             	Calendar.setup({

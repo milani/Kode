@@ -19,6 +19,10 @@ class AssignmentAddForm extends AssignmentForm {
 
         // init the parent
         parent::init();
+
+        $this->getElement('assignment_start_at')->setValue(date('Y-m-d H:i',strtotime("+1 day")));
+        $this->getElement('assignment_due_date')->setValue(date('Y-m-d H:i',strtotime("+7 days")));
+        $this->getElement('assignment_end_at')->setValue(date('Y-m-d H:i',strtotime("+7 days")));
     }
     
     public function isValid($data){
