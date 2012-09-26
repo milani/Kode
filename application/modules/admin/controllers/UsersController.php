@@ -107,7 +107,40 @@ class UsersController extends App_Admin_Controller {
         
         $this->view->form = $form;
     }
-    
+
+    public function transferclassAction(){
+        $this->title = 'Transfer students to new class';
+
+        $classId = $this->_getParam('classid');
+        $returnUrl = $this->_helper->url('students','users','admin',array('classid'=>$classId));
+
+        $form = new UserStudentTransferForm();
+        $form->populate(array('class_from_id'=>$classId));
+        $form->setCancelLink($returnUrl);
+        $userModel = new FrontUser();
+        
+        if($this->getRequest()->isPost()){
+            if( $form->isValid($this->getRequest()->getPost()) && $userModel->transferClass($form->getValues()) ){
+
+                $this->_helper->FlashMessenger(
+                    array(
+                        'msg-success' => 'Students moved to new class',
+                    )
+                );
+
+                $this->_redirect($returnUrl,array('prependBase'=>false));
+            } else {
+                $this->_helper->FlashMessenger(
+                    array(
+                        'msg-error' => 'Couldn\'t move students to new class',
+                    )
+                );
+            }
+        }
+
+        $this->view->form = $form;
+    }
+
     public function toggleactiveAction(){
         $this->title = '';
         

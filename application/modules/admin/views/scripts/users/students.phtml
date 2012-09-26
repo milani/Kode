@@ -13,19 +13,25 @@ $config['pageTitle'] = 'Manage Students';
 $config['addMessage'] = 'Add new student';
 $config['showAddButton'] = false;
 
-if(isset($this->classId)){
-    $config['linkRouter'] = array(
-        'defaultParams'	=> array('classid'=>$this->classId)
-    );
-}
-
 $config['additionalToolbarActions'] = array(
     'add' => array(
         'action' => 'addstudent',
         'controller' => 'users',
-		'title' => 'Add new student',
+        'title' => 'Add new student',
     )
 );
+
+if(isset($this->classId)){
+    $config['linkRouter'] = array(
+        'defaultParams'	=> array('classid'=>$this->classId)
+    );
+    $config['additionalToolbarActions']['transferclass'] = array(
+        'action'     => 'transferclass',
+        'controller' => 'users',
+        'title'      => 'Transfer to another class'
+    );
+}
+
 $config['emptyMessage'] = 'We don\'t have any student registered at this time.';
 // column names & indexes
 $config['columnNames'] = array(
