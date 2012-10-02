@@ -120,7 +120,7 @@ class UsersController extends App_Admin_Controller {
         $userModel = new FrontUser();
         
         if($this->getRequest()->isPost()){
-            if( $form->isValid($this->getRequest()->getPost()) && $userModel->transferClass($form->getValues()) ){
+            if( $form->isValid($this->getRequest()->getPost()) && $userModel->transferClass($form->getValue('class_from_id'),$form->getValue('class_to_id')) ){
 
                 $this->_helper->FlashMessenger(
                     array(

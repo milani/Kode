@@ -252,12 +252,29 @@ class FrontUser extends App_Model {
         $paginator->setItemCountPerPage(Zend_Registry::get('config')->paginator->items_per_page);
         return $paginator;
     }
-    
+
     public function findByClass($classId,$page = 1,$paginate = NULL){
         $select = $this->_getSelect();
         $select->where('u.class_id = ?',$classId);
         return $this->_paginate($select, $page, $paginate);
     }
+
+    public function transferClass($classFromId,$classToId) {
+        
+        $transfer  = $this->_db->quoteInto('UPDATE '.$this->_name.' SET class_id = ? ', $classToId);
+        $transfer .= $this->_db->quoteInto('WHERE class_id = ?', $classFromId);
+        try{
+            $this->_db->query($transfer);
+            $this->_db->quoteInto('DELETE FROM submission_grade WHERE submission_id IN (SELECT submission_id FROM submission_grade JOIN submissions ON submission_grade.submission_id = submissions.id JOIN users ON users.id = submissions.user_id WHERE users.class_id = ?)',$classFromId);
+            $this->_db->quoteInto('DELETE FROM submission_attach WHERE submission_id IN (SELECT submission_id FROM submission_grade JOIN submissions ON submission_grade.submission_id = submissions.id JOIN users ON users.id = submissions.user_id WHERE users.class_id = ?)',$classFromId);
+            $this->_db->quoteInto('DELETE FROM submissions WHERE id IN (SELECT submissions.id from submissions JOIN users ON users.id = submissions.user_id WHERE users.class_id = ?',$classFromId);
+        } catch( Exception $e ) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Overrides findById() in App_Model
      * 
